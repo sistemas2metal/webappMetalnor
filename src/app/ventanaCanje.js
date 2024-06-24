@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnCanje.addEventListener('click', () => {
             //Muestro la ventana Buscar
             VBuscar.style.display = "block";
-            //Actualizar puntos  
+            //!!!!!!!!!!!!!!!!Actualizar puntos Falta hacer 
             //Oculto la ventana 
             vCanje.style.display = "none";
         })
