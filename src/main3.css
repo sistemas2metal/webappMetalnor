@@ -1,0 +1,36 @@
+body{
+    background: #202020;
+    color: white;
+}
+
+.tarjetaPremios .card {
+    width: 18rem;
+    /* Fija el ancho de la tarjeta */
+    height: 25rem;
+    /* Fija la altura de la tarjeta */
+    margin: .5rem;
+}
+
+.card-body {
+    overflow-y: auto;
+    /* Permite el desplazamiento si el contenido es demasiado largo */
+}
+
+.card-img-top {
+    height: 150px;
+    /* Fija la altura de la imagen */
+    object-fit: cover;
+    /* Ajusta la imagen para que se ajuste al contenedor */
+}
+
+.modal-lg {
+    max-width: 80%;
+    /* Fija el tamaño máximo de la ventana modal */
+}
+
+.modal-content {
+    max-height: 90vh;
+    /* Fija la altura máxima del contenido de la ventana modal */
+    overflow-y: auto;
+    /* Permite el desplazamiento en la ventana modal */
+}

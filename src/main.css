@@ -2,3 +2,93 @@ body{
     background: #202020;
     color: white;
 }
+
+.table-rounded {                 /* redondea los bordes externos de la tabla */
+    border-radius: 15px;
+    overflow: hidden;
+    /*border-collapse: separate;*/
+}
+
+.table thead th {
+    color: #0312da; /* Color azul para los títulos de la tabla */
+    border: 2px solid #000000; /* Grosor del borde más delgado para las celdas internas */
+    text-align: center; /* Centra el texto */
+}
+
+.table tbody td, .table tbody th {
+    font-size: 0.875rem; /* Tamaño de fuente reducido para las celdas internas */
+    border: 0.5px solid #000000; /* Grosor del borde más delgado para las celdas internas */
+        
+}
+.text-center {
+    text-align: center; /* Centra el texto */
+}
+
+
+.full-height {
+    height: 100vh;
+}
+
+#VentanaBuscar {
+    display: none;
+}
+
+#abmClientes {
+    display: none;
+}
+#ventanaCanje {
+    display: none;  /* oculto la ventana por defecto */
+}
+
+#ventanaPremios {
+    display: none;
+}
+#ventanaPublicidad{
+    display:none;
+}
+#selectorPremios{
+    display: none;
+}
+
+.cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.tarjetaPremios .card {
+    width: 18rem;
+    /* Fija el ancho de la tarjeta */
+    height: 25rem;
+    /* Fija la altura de la tarjeta */
+    margin: .5rem;
+    
+}
+
+.card-body {
+    overflow-y: auto; 
+    /* Permite el desplazamiento si el contenido es demasiado largo */
+}
+
+.card-img-top {
+    display: inline-block;
+    height: 150px;
+    /* Fija la altura de la imagen */
+    width: 150px;
+    /* object-fit: cover; */
+    /* Ajusta la imagen para que se ajuste al contenedor */
+}
+.card-imagen {
+    text-align: center;
+}
+.modal-lg {
+    max-width: 80%;
+    /* Fija el tamaño máximo de la ventana modal */
+}
+
+.modal-content {
+    max-height: 90vh;
+    /* Fija la altura máxima del contenido de la ventana modal */
+    overflow-y: auto;
+    /* Permite el desplazamiento en la ventana modal */
+}

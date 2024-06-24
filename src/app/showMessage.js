@@ -2,7 +2,7 @@ export function showMessage(message,type) {
     Toastify({
         text: message,
         duration: 3000,
-        destination: "https://github.com/apvarun/toastify-js",
+        destination: "#",
         newWindow: true,
         close: true,
         gravity: "bottom", // `top` or `bottom`
