@@ -1,11 +1,13 @@
 import { getPremios, getPremioId } from './consultas.js'
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const btnCanje = document.getElementById('btnVCanjear');
     const vCanje = document.getElementById('ventanaCanje');
     const VBuscar = document.getElementById('VentanaBuscar');
     const inpCanDescripcion = document.getElementById('inpCanDescripcion');
+  
+
     let modal; 
 
     if (btnCanje) {
@@ -42,8 +44,8 @@ window.seleccionar = async function (id){
     }catch (error) {
         console.error("Error al obtener premios:")
     }
-
 }
+
 // -----------Función que muestra todas las tarjetas con premios --------------------------    
 async function displayPremios() {
     const premios = await getPremios();

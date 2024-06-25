@@ -24,7 +24,7 @@ import './app/ventanaPublicidad.js'
 //import './app/selectNombre.js'
 //import './app/mostrarUsuarios.js'
 //-----------------------------------------------------------------------------------------------------------------
-window.idcliente = '';   // variable en donde guardo el cliente seleccionado
+//window.idcliente = '';   // variable en donde guardo el cliente seleccionado
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {

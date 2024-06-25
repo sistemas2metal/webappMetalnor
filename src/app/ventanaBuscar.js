@@ -1,4 +1,4 @@
-import {getUsuariosPorNombre,getPuntosUsuarios} from './consultas.js'
+import {getUsuariosPorNombre,getPuntosUsuarios,getClientesPorId} from './consultas.js'
 import {updateTable} from './updates.js'
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputDni= document.querySelector('#dniUsuario')
 
     window.radioClicked = function (radio){
-        window.idCliente =radio.value;
-        console.log(window.idCliente);
+        const idcliente = document.getElementById('idcliente');
+        idcliente.value =radio.value;
     }
 
     if (btnDatos) {
@@ -28,11 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         })
     if (btnCanje){
-            btnCanje.addEventListener('click',()=>{
+            btnCanje.addEventListener('click', async ()=>{
                 //Oculto la ventana Buscar
                 VBuscar.style.display="none";
                 //Muestro la ventana Canje
-                console.log('ESTOY AQUI');
+                  //vincular el label con una variable
+                const LabelNombre = document.getElementById('pNombre');
+                //buscar el usuario por id
+                const idcliente = document.getElementById('idcliente').value
+                const usuario = await getClientesPorId(idcliente);
+                //colocar el nombre en el Label 
+                LabelNombre.textContent=usuario.nombre;
                 inpCanPuntos.value = '';
                 inpCanDescripcion.value = '';
                 vCanje.style.display="block";
