@@ -1,14 +1,12 @@
 
 
 export function updateTable(usuarios) {
-    console.log('usuarios: ');
-    console.log(usuarios);
     const tbody = document.getElementById('tClientestbody');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
-
-    usuarios.forEach((usuario, index) => {
+    
+    usuarios.forEach((usuario) => {
         const tr = document.createElement('tr');
-
+        
         const tdCheck = document.createElement('td');
         tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+usuario.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
         tr.appendChild(tdCheck);
@@ -30,7 +28,7 @@ export function updateTable(usuarios) {
         tr.appendChild(tdDni);
 
         const tdPuntos = document.createElement('td');
-        tdDni.textContent = usuario.puntos;
+        tdPuntos.textContent = usuario.puntos; 
         tr.appendChild(tdPuntos);
 
         tbody.appendChild(tr);

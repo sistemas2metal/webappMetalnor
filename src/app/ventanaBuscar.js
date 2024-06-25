@@ -11,7 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const inpCanDescripcion = document.getElementById('inpCanDescripcion')
     const inputName= document.querySelector('#nombreUsuario')                            //selecciono el elemento al cual tengo que modificar 
     const inputDni= document.querySelector('#dniUsuario')
-
+    //-----------------ventana ABMClientes-----------
+    const abmNombre = document.getElementById ('crud-nombre');
+    const abmDomicilio = document.getElementById('crud-domicilio');
+    const abmDni = document.getElementById('crud-dni');
+    const abmEmail = document.getElementById('crud-email');
+    const abmPuntos = document.getElementById('crud-puntos');
+    //-----------------------------------------------
     window.radioClicked = function (radio){
         const idcliente = document.getElementById('idcliente');
         idcliente.value =radio.value;
@@ -24,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Si se hizo oculto la VentanaBuscar
             VBuscar.style.display = "none";
             // Muestro la ventana ABMClientes
+            //cargo los datos en la ventana ABMClientes
+
             ABMClientes.style.display = "block";
 
         })
@@ -46,18 +54,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    if (btnBuscar){
-        btnBuscar.addEventListener('click', async ()=>{            
-            const usuarios = await getUsuariosPorNombre(inputName.value,inputDni.value)
-            
+    if (btnBuscar) {
+        btnBuscar.addEventListener('click', async () => {
+            // Obtener usuarios por nombre y DNI de manera asíncrona
+            const usuarios = await getUsuariosPorNombre(inputName.value, inputDni.value);
+    
             // Crear un array de promesas para obtener los puntos de cada usuario
-            
-            
-            usuarios.forEach(async element => {
+            const usuariosConPuntos = await Promise.all(usuarios.map(async (element) => {
+                // Obtener los puntos del usuario actual de manera asíncrona
                 const puntos = await getPuntosUsuarios(element.id);
+                // Agregar la propiedad 'puntos' al objeto usuario
                 element.puntos = puntos;
-            });
-            updateTable(usuarios);
+                return element; // Devolver el usuario con los puntos actualizados
+            }));
+    
+            // Actualizar la tabla con los usuarios que ahora incluyen los puntos
+            updateTable(usuariosConPuntos);
         });
     }
 
