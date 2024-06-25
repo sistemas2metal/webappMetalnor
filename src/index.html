@@ -71,6 +71,9 @@
                             <input type="number" class="form-control" type="number" id="dniUsuario" name="dni"
                                 aria-label="Last name">
                         </div>
+                        <div class="col col-md-3">
+                            <button type="button" id="btnBuscar" class="btn btn-outline-primary mt-2">Buscar</button>
+                        </div>
                     </div>
                 </form>
                 <div class="col-md-12 table-responsive">
@@ -86,7 +89,7 @@
                                 <th scope="col">Próximo vencimiento</th>
                             </tr>
                         </thead>
-                        <tbody class="table-group-divider">
+                        <tbody id="tClientestbody" class="table-group-divider">
                             <tr>
                                 <td>
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
