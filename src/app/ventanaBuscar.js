@@ -24,14 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (btnDatos) {
-        btnDatos.addEventListener('click', () => {
+        btnDatos.addEventListener('click', async() => {
             console.log('Botón datos presionado');
             // Busco si se hizo una selección 
             // Si se hizo oculto la VentanaBuscar
             VBuscar.style.display = "none";
-            // Muestro la ventana ABMClientes
+            //busco los datos del cliente
+            const idcliente = document.getElementById('idcliente').value;
+            const usuario = await getClientesPorId(idcliente); 
+            abmNombre.value = usuario.nombre;
+            abmDni.value=usuario.dni;
+            abmEmail.value=usuario.email;
+            abmDomicilio.value=usuario.domicilio;
+            const puntos = await getPuntosUsuarios(idcliente);
+            abmPuntos.value = puntos
             //cargo los datos en la ventana ABMClientes
-
+            // Muestro la ventana ABMClientes
             ABMClientes.style.display = "block";
 
         })
