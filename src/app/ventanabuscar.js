@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputName= document.querySelector('#nombreUsuario')                            //selecciono el elemento al cual tengo que modificar 
     const inputDni= document.querySelector('#dniUsuario')
 
+    window.radioClicked = function (radio){
+        window.idCliente =radio.value;
+        console.log(window.idCliente);
+    }
 
     if (btnDatos) {
         btnDatos.addEventListener('click', () => {
@@ -52,4 +56,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 //-------------------------------------------------------------------------------------
+
 });

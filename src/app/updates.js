@@ -1,15 +1,17 @@
 
+
 export function updateTable(usuarios) {
+    console.log('usuarios: ');
+    console.log(usuarios);
     const tbody = document.getElementById('tClientestbody');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
 
     usuarios.forEach((usuario, index) => {
         const tr = document.createElement('tr');
 
-        const th = document.createElement('th');
-        th.scope = 'row';
-        th.textContent = index + 1;
-        tr.appendChild(th);
+        const tdCheck = document.createElement('td');
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+usuario.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
+        tr.appendChild(tdCheck);
 
         const tdNombre = document.createElement('td');
         tdNombre.textContent = usuario.nombre;
@@ -30,6 +32,7 @@ export function updateTable(usuarios) {
         const tdPuntos = document.createElement('td');
         tdDni.textContent = usuario.puntos;
         tr.appendChild(tdPuntos);
+
         tbody.appendChild(tr);
     });
 }
