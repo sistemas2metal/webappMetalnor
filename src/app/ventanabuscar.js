@@ -1,9 +1,15 @@
+import {getUsuariosPorNombre,getPuntosUsuarios} from './consultas.js'
+import {updateTable} from './updates.js'
+
 document.addEventListener("DOMContentLoaded", () => {
     const btnDatos = document.getElementById("btn-datos");
     const VBuscar = document.getElementById("VentanaBuscar");
     const ABMClientes = document.getElementById("abmClientes");
     const vCanje = document.getElementById('ventanaCanje');
     const btnCanje = document.getElementById('btn-canje');
+    const inputName= document.querySelector('#nombreUsuario')                            //selecciono el elemento al cual tengo que modificar 
+    const inputDni= document.querySelector('#dniUsuario')
+
 
     if (btnDatos) {
         btnDatos.addEventListener('click', () => {
@@ -23,5 +29,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 vCanje.style.display="block";
             })
         }
-    };
+    }
+
+    if (btnBuscar){
+        btnBuscar.addEventListener('click', async ()=>{            
+            const usuarios = await getUsuariosPorNombre(inputName.value,inputDni.value)
+            
+            // Crear un array de promesas para obtener los puntos de cada usuario
+            
+            
+            usuarios.forEach(async element => {
+                const puntos = await getPuntosUsuarios(element.id);
+                element.puntos = puntos;
+            });
+            updateTable(usuarios);
+        });
+    }
+
+//-------------------------------------------------------------------------------------
 });

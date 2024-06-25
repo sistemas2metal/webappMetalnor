@@ -27,23 +27,44 @@ export async function getUsuariosPorNombre(formObject) {
     return usuariosArray; // Retorna el array de objetos como JSON */
 /*} */
 
-export async function getUsuariosPorNombre(formObject) {
+export async function getUsuariosPorNombre(nombre,dni) {
     const usuarios = collection(db, "usuarios");
-    let q = query(usuarios); // Inicializa la consulta con la colección 'usuarios'
-    // Itera sobre las claves del objeto del formulario
-    for (let key in formObject) {
-        if (formObject[key] !== '') { // Si el valor no está vacío
-            q = query(q, where(key, '>=', formObject[key])); // Añado la condición 'where' a la consulta
+    let q,consulta
+    if (nombre === ''){
+        if (dni === ''){
+            console.log('nombre vacio y dni vacío')
+            return [];
+        }else{
+            console.log('nombre vacìo y dni '+dni);
+            q = query(usuarios,where ("dni","==",parseInt(dni, 10)));
+        }
+    }else { 
+        if (dni === ''){
+            console.log('nombre lleno y dni vacio');
+            q = query(usuarios,where ("nombre","==",nombre));
+        }else {
+            console.log('nombre lleno y dni lleno');
+            q = query(usuarios,where ("nombre","==",nombre),where("dni","==",parseInt(dni, 10)));
+            
         }
     }
-    q = query(usuarios, consulta);
+    
+    //q = query(usuarios); // Inicializa la consulta con la colección 'usuarios'
+    // Itera sobre las claves del objeto del formulario
+    // for (let key in formObject) {
+    //     if (formObject[key] !== '') { // Si el valor no está vacío
+    //         q = query(q, where(key, '==', formObject[key])); // Añado la condición 'where' a la consulta
+    //     }
+    // }
+    //q = query(usuarios, consulta);
+    console.log(q)
     const querySnapshot = await getDocs(q);
     // Convierte el querySnapshot a un array de objetos
     const usuariosArray = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
     }));
-
+    console.log(usuariosArray);
     return usuariosArray; // Retorna el array de objetos como JSON
 }
 
@@ -72,7 +93,29 @@ export async function getPremioId(id){
         return datosArray;
     } catch (error) {
         console.error("Error al obtener premio por ID:", error);
-        throw error; // opcional: relanzar el error para manejarlo en otro lugar
     }
 }
-
+// -------------Obtiene los puntos de cada usuario 
+export async function getPuntosUsuarios(id){
+    const puntosRef = collection(db,"puntos");
+    const q = query(puntosRef,where("idcliente","==",String(id)));
+    try{
+        const querySnapshot = await getDocs(q)
+    
+        const datosArray = querySnapshot.docs.map( doc =>{
+            return{
+                id: doc.id,
+                ...doc.data()
+            };
+        });
+        console.log(datosArray);
+        let puntos = 0;
+        datosArray.forEach(punto =>{
+            puntos += parseInt(punto.cantidad,10)
+        })
+        return puntos;
+    }catch (error){
+        console.error("Error al obtener puntos por ID:", error);
+        
+    }
+}

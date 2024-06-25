@@ -67,7 +67,8 @@
                             <label for="dniUsuario" class="me-5 mb-2">DNI :</label>
                             <input type="number" id="dniUsuario" name="dni" style="width: 150px"
                                 class="form-control me-5 mb-2" />
-                        </div>
+                                <button type="button" id="btnBuscar" class="btn btn-outline-primary mt-2">Buscar</button>
+                            </div>
                     </form>
                     <div class="form-group">
                         <button type="button" id="btn-datos" class="btn btn-outline-primary mt-2">Datos</button>
@@ -82,7 +83,7 @@
 
                 </div>
                 <div class="col-md-8">
-                    <table class="table table-rounded table-hover ">
+                    <table class="table table-rounded table-hover " id="tClientes">
                         <thead>
                             <tr>
                                 <th scope="col"></th>
@@ -94,7 +95,7 @@
                                 <th scope="col">Próximo vencimiento</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="tClientestbody">
                             <!--Aqui actualizo-->
                         </tbody>
                     </table>
@@ -342,7 +343,7 @@
     <div class="container" id="ventanaPremios" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="col-md-8">
-            <table class="table table-rounded table-hover ">
+            <table class="table table-rounded table-hover " id="tpremios">
                 <thead>
                     <tr>
                         <th scope="col"></th>

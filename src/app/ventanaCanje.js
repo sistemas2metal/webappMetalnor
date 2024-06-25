@@ -1,6 +1,7 @@
 import { getPremios, getPremioId } from './consultas.js'
 
 document.addEventListener('DOMContentLoaded', () => {
+    
     const btnCanje = document.getElementById('btnVCanjear');
     const vCanje = document.getElementById('ventanaCanje');
     const VBuscar = document.getElementById('VentanaBuscar');
