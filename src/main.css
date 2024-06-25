@@ -3,23 +3,11 @@ body{
     color: white;
 }
 
-.table-rounded {                 /* redondea los bordes externos de la tabla */
-    border-radius: 15px;
-    overflow: hidden;
-    /*border-collapse: separate;*/
+.table th {
+    background-color: #191824;
+    text-align: center;
 }
 
-.table thead th {
-    color: #0312da; /* Color azul para los títulos de la tabla */
-    border: 2px solid #000000; /* Grosor del borde más delgado para las celdas internas */
-    text-align: center; /* Centra el texto */
-}
-
-.table tbody td, .table tbody th {
-    font-size: 0.875rem; /* Tamaño de fuente reducido para las celdas internas */
-    border: 0.5px solid #000000; /* Grosor del borde más delgado para las celdas internas */
-        
-}
 .text-center {
     text-align: center; /* Centra el texto */
 }
