@@ -1,6 +1,6 @@
 
 export function updateTable(usuarios) {
-    const tbody = document.querySelector('table tbody');
+    const tbody = document.getElementById('tClientestbody');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
 
     usuarios.forEach((usuario, index) => {
@@ -24,9 +24,12 @@ export function updateTable(usuarios) {
         tr.appendChild(tdCel);
 
         const tdDni = document.createElement('td');
-        tdDni.textContent = usuario.id;
+        tdDni.textContent = usuario.dni;
         tr.appendChild(tdDni);
 
+        const tdPuntos = document.createElement('td');
+        tdDni.textContent = usuario.puntos;
+        tr.appendChild(tdPuntos);
         tbody.appendChild(tr);
     });
 }
