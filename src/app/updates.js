@@ -1,5 +1,5 @@
 
-
+//------------------------------------ACTUALIZA LA TABLA DE BUSQUEDA--------------------------
 export function updateTable(usuarios) {
     const tbody = document.getElementById('tClientestbody');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
@@ -34,7 +34,7 @@ export function updateTable(usuarios) {
         tbody.appendChild(tr);
     });
 }
-
+//---------------------------------- ACTUALIZA LA TABLA PREMIOS -------------------------------
 export function updateTablaPremios(premios) {
     const tbody = document.getElementById('tPremios');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
@@ -65,8 +65,7 @@ export function updateTablaPremios(premios) {
         tbody.appendChild(tr);
     });
 } 
-
-
+//---------------------------------- ACTUALIZA LA TABLA PUBLICIDAD ----------------------------
 export function updateTablaPublicidad(publicidades) {
     const tbody = document.getElementById('tPublicidad');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos

@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const inpCanPuntos = document.getElementById('inpCanPuntos');
     const inpCanDescripcion = document.getElementById('inpCanDescripcion')
     const inputName= document.querySelector('#nombreUsuario')                            //selecciono el elemento al cual tengo que modificar 
-    const inputDni= document.querySelector('#dniUsuario')
+    const inputDni= document.querySelector('#dniUsuario');
+    const btnHistorico = document.querySelector('#btn-historico');
+    
+
     //-----------------ventana ABMClientes-----------
     const abmNombre = document.getElementById ('crud-nombre');
     const abmDomicilio = document.getElementById('crud-domicilio');
@@ -20,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //-----------------------------------------------
     window.radioClicked = function (radio){
         const idcliente = document.getElementById('idcliente');
-        idcliente.value =radio.value;
+        idcliente.value = radio.value;
     }
 
     if (btnDatos) {
@@ -60,6 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 vCanje.style.display="block";
             })
         }
+    }
+
+    if (btnHistorico){
+        console.log('presione boton Historico');
+        //Oculto la ventana Buscar
+        VBuscar.style.display="none";
+        //Muestro la ventana Historico
+        vHistorico.style.display="block";
     }
 
     if (btnBuscar) {

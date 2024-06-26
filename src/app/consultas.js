@@ -5,7 +5,7 @@ import { db } from './firebase.js'
 function formatDate(timestamp) {
     if (timestamp instanceof Timestamp) {
         const date = timestamp.toDate(); // Convertir el Timestamp a un objeto Date de JavaScript
-        return date.toLocaleDateString() + ' ' + date.toLocaleTimeString(); // Formatear la fecha y hora como una cadena
+        return date.toLocaleDateString(); // Formatear la fecha y hora como una cadena
     }
     return ''; // En caso de que no sea un Timestamp válido, devolver una cadena vacía
 }
@@ -93,7 +93,6 @@ export async function getPuntosUsuarios(id){
         
     }
 }
-
 //----------------------CONSULTA PARA OBTENER EL USUARIO POR EL ID ----------------
 export async function getClientesPorId(id){
     const usuariosRef = collection(db,"usuarios");
@@ -112,7 +111,6 @@ export async function getClientesPorId(id){
         console.error("Error al obtener Clientes por ID:",error);
     }
 } 
-
 //----------------------CONSULTA PARA OBTENER LOS PREMIOS ---------------------
 export async function getPuntos(){
     try{
@@ -127,7 +125,7 @@ export async function getPuntos(){
         console.log("Error al obtener los Puntos");
     }
 }
-
+//--------------------CONSULTA PARA OBTENER LAS PUBLICIDADES -------------------------
 export async function getPublicidad() {
     try {
         const publicidad = collection(db, "posts");
