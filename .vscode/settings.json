@@ -6,5 +6,6 @@
     "zenMode.hideActivityBar": false,
     "zenMode.hideStatusBar": false,
     "zenMode.restore": false,
-    "zenMode.silentNotifications": false
+    "zenMode.silentNotifications": false,
+    "liveServer.settings.port": 5501
 }
