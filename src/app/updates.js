@@ -6,7 +6,7 @@ export function updateTable(usuarios) {
     
     usuarios.forEach((usuario) => {
         const tr = document.createElement('tr');
-        
+
         const tdCheck = document.createElement('td');
         tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+usuario.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
         tr.appendChild(tdCheck);
@@ -35,34 +35,65 @@ export function updateTable(usuarios) {
     });
 }
 
-/* export function updateTablaPremios(premios) {
-    const tbody = document.querySelector('table tbody');
+export function updateTablaPremios(premios) {
+    const tbody = document.getElementById('tPremios');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
 
-    premios.forEach((usuario, index) => {
+    premios.forEach((premio) => {
         const tr = document.createElement('tr');
 
-        const th = document.createElement('th');
-        th.scope = 'row';
-        th.textContent = index + 1;
-        tr.appendChild(th);
+        const tdCheck = document.createElement('td');
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+premio.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
+        tr.appendChild(tdCheck);
 
         const tdNombre = document.createElement('td');
-        tdNombre.textContent = usuario.nombre;
+        tdNombre.textContent = premio.nombre;
         tr.appendChild(tdNombre);
 
-        const tdEmail = document.createElement('td');
-        tdEmail.textContent = usuario.email;
-        tr.appendChild(tdEmail);
+        const tdDescripcion = document.createElement('td');
+        tdDescripcion.textContent = premio.descripcion;
+        tr.appendChild(tdDescripcion);
 
-        const tdCel = document.createElement('td');
-        tdCel.textContent = usuario.cel;
-        tr.appendChild(tdCel);
+        const tdPuntos = document.createElement('td');
+        tdPuntos.textContent = premio.puntos;
+        tr.appendChild(tdPuntos);
 
-        const tdDni = document.createElement('td');
-        tdDni.textContent = usuario.id;
-        tr.appendChild(tdDni);
+        const tdStock = document.createElement('td');
+        tdStock.textContent = premio.stock;
+        tr.appendChild(tdStock);
 
         tbody.appendChild(tr);
     });
-} */
+} 
+
+
+export function updateTablaPublicidad(publicidades) {
+    const tbody = document.getElementById('tPublicidad');
+    tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
+
+    publicidades.forEach((publicidad) => {
+        const tr = document.createElement('tr');
+
+        const tdCheck = document.createElement('td');
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+publicidad.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
+        tr.appendChild(tdCheck);
+
+        const tdTitulo = document.createElement('td');
+        tdTitulo.textContent = publicidad.titulo;
+        tr.appendChild(tdTitulo);
+
+        const tdContenido = document.createElement('td');
+        tdContenido.textContent = publicidad.contenido;
+        tr.appendChild(tdContenido);
+
+        const tdDesde = document.createElement('td');
+        tdDesde.textContent = publicidad.desde;
+        tr.appendChild(tdDesde);
+
+        const tdHasta = document.createElement('td');
+        tdHasta.textContent = publicidad.hasta;
+        tr.appendChild(tdHasta);
+
+        tbody.appendChild(tr);
+    });
+} 

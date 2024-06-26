@@ -1,3 +1,5 @@
+import { getPremios, getPublicidad} from './consultas.js';
+import {updateTablaPremios,updateTablaPublicidad} from './updates.js';
 document.addEventListener("DOMContentLoaded", () => {
 
     const btnPrinClientes = document.getElementById('btnPrinClientes');
@@ -24,23 +26,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (btnPrinPremios) {
-        btnPrinPremios.addEventListener('click', () => {
+        btnPrinPremios.addEventListener('click', async () => {
             console.log('Botón Premios presionado');
              // Ocultar el Menú Principal
             VPrincipal.style.display="none";
+            // buscar los premios
+            const premios = await getPremios(); 
+            // actualizar la tabla
+            updateTablaPremios(premios);
             // Mostrar el div de Premios
             vPremios.style.display="block";
-
         });
     } else {
         console.log('El botón btnPrinPremios no se encontró');
     }
     
     if (btnPrinPublicidad) {
-        btnPrinPublicidad.addEventListener('click', () => {
+        btnPrinPublicidad.addEventListener('click', async () => {
             console.log('Botón Publicidad presionado');
             // Ocultar el Menú Principal
             VPrincipal.style.display="none";
+            //Buscar la publicidades
+            const publicidad = await getPublicidad();
+            //Actualizar la tabla
+            updateTablaPublicidad(publicidad);
             // Mostrar el div de Publicidad
             vPublicidad.style.display="block";
         });
