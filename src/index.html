@@ -85,6 +85,7 @@
                     </table>
                 </div>
                 <div class="btnClientesAccion form-group">
+                    <button type="button" id="btnClienteEliminar" class="btn btn-primary mt-2">Eliminar</button> 
                     <button type="button" id="btn-datos" class="btn btn-outline-primary mt-2">Datos</button>
                     <button type="button" id="btn-canje" class="btn btn-outline-primary mt-2">Canjear</button>
                     <button type="button" id="btn-historico" class="btn btn-outline-primary mt-2"  data-bs-toggle="modal" data-bs-target="#vHistoricoP">Histórico</button>
@@ -330,6 +331,8 @@
 
     <!----------------------------------- Ventana Premios ------------------------------------>
     <div class="container mt-5" id="ventanaPremios">
+        <!-- Input oculto para almacenar el ID del premio a eliminar -->
+        <input type="hidden" id="idPremio">
         <div class="row">
             <div class="col-md-10">
                 <table class="table table-dark table-striped table-hover align-middle" id="tpremios">
@@ -348,7 +351,7 @@
                 </table>
             </div>
             <div class="btnPremiosAccion form-group">
-                <button type="button" class="btn btn-outline-primary" id="btnVPremEliminar">Eliminar</button>
+                <button type="button" class="btn btn-outline-primary" id="btnPremioEliminar">Eliminar</button>
                 <button type="button" class="btn btn-outline-primary" id="btnVPremEditar" data-bs-toggle="modal"
                     data-bs-target="#abmPremios">Editar</button>
                 <button type="button" class="btn btn-outline-primary" id="btnVPremAgregar" data-bs-toggle="modal"
@@ -356,8 +359,7 @@
             </div>
         </div>
     </div>
-
-    <!----------------------------------- Ventana Publicidad ------------------------------------>
+<!----------------------------------- Ventana Publicidad ------------------------------------>
     <div class="container" id="ventanaPublicidad">
         <div class="row">
             <div class="col-md-12 table-responsive">

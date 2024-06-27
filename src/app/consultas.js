@@ -1,4 +1,4 @@
-import {collection, query, where, getDocs, Timestamp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import {collection, query, where, getDocs, Timestamp, deleteDoc,doc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { db } from './firebase.js'
 
 //---------------- Función para formatear el objeto Timestamp a una cadena de fecha legible
@@ -161,15 +161,79 @@ export async function getPuntosDelUsuarios(id){
         const querySnapshot = await getDocs(q);
     
         const datosArray = querySnapshot.docs.map( doc =>{
-            return{
-                id: doc.id,
-                ...doc.data()
-            };
-        });
-        console.log(datosArray);
+            const data = doc.data();
+            const formattedData = {};
+
+          // Formatear los campos Timestamp a cadenas de fecha
+        for (const key in data) {
+            if (data[key] instanceof Timestamp) {
+                formattedData[key] = formatDate(data[key]);
+            } else {
+                formattedData[key] = data[key];
+            }
+        }
+
+        return {
+            id: doc.id,
+            ...formattedData
+        };
+    });
         return datosArray;
     }catch (error){
         console.error("Error al obtener puntos por ID:", error);
         
     }
 }
+
+//--------------------------CONSULTA PARA GUARDAR UN NUEVO CLIENTE---------------------------
+//--------------------------CONSULTA PARA EDITAR UN CLIENTE EXISTENTE--------------------------
+//--------------------------CONSULTA PARA ELIMINAR UN CLIENTE --------------------------
+export async function eliminarUsuario(idCliente) { // Función para eliminar un usuario por su idcliente
+    try {
+        await deleteDoc(doc(db, 'usuarios', idCliente));
+        console.log('Usuario eliminado correctamente');
+        return true;
+    } catch (error) {
+        console.error('Error al eliminar usuario:', error);
+        return false;
+    }
+}
+
+//--------------------------CONSULTA PARA GUARDAR PUNTOS -----------------------------
+//--------------------------CONSULTA PARA EDITAR PUNTOS EXISTENTE--------------------------
+//--------------------------CONSULTA PARA ELIMINAR PUNTOS  -----------------------------------
+// export async function eliminarPunto(idPunto) { // Función para eliminar un usuario por su idcliente
+//     try {
+//         await deleteDoc(doc(db, 'puntos', idPunto));
+//         console.log('Puntos eliminado correctamente');
+//         return true;
+//     } catch (error) {
+//         console.error('Error al eliminar Puntos:', error);
+//         return false;
+//     }
+// }
+//--------------------------CONSULTA PARA GUARDAR PUBLICIDAD ------------------------------
+//--------------------------CONSULTA PARA EDITAR PUBLICIDAD EXISTENTE------------------------------
+//--------------------------CONSULTA PARA ELIMINAR PUBLICIDAD ------------------------------
+
+//--------------------------CONSULTA PARA GUARDAR PREMIOS ---------------------------------- 
+//--------------------------CONSULTA PARA EDITAR PREMIO EXISTENTE ---------------------------------- 
+//--------------------------CONSULTA PARA ELIMINAR PREMIO ---------------------------------- 
+export async function eliminarPremio(idPremio) {
+    try {
+        await deleteDoc(doc(db, 'premios', idPremio));
+        console.log('Premio eliminado correctamente');
+        return true;
+    } catch (error) {
+        console.error('Error al eliminar premio:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA GUARDAR PROMOCION ---------------------------------- 
+//--------------------------CONSULTA PARA EDITAR UNA PROMOCION EXISTENE ---------------------------------- 
+//--------------------------CONSULTA PARA ELIMINAR PROMOCION ---------------------------------- 
+
+//--------------------------CONSULTA PARA GUARDAR EN AUDITORIA ---------------------------------- 
+//--------------------------CONSULTAR AUDITORIA ---------------------------------- 
+
+

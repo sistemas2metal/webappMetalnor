@@ -43,7 +43,7 @@ export function updateTablaPremios(premios) {
         const tr = document.createElement('tr');
 
         const tdCheck = document.createElement('td');
-        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+premio.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" value="'+premio.id+'" onclick="radioClicked(this)">'
         tr.appendChild(tdCheck);
 
         const tdNombre = document.createElement('td');

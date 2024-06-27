@@ -1,17 +1,29 @@
+import {eliminarPremio} from './consultas.js'
 document.addEventListener('DOMContentLoaded',()=>{
 
     const vPremios = document.getElementById('ventanaPremios');
-    const btnVPremEliminar = document.getElementById('btnVPremEliminar');
+    const btnEliminarPremio = document.getElementById("btnPremioEliminar");
     const VPrincipal= document.getElementById('ventanaPrincipal');   //busco el elemento
 
+    if (btnEliminarPremio) {
+        btnEliminarPremio.addEventListener('click', async () => {
+            const idPremio = document.querySelector('#idPremio').value;
 
-    if (btnVPremEliminar){
-        btnVPremEliminar.addEventListener('click',()=>{
-            //Muestro la ventana Buscar
-            VPrincipal.style.display="block";
-            //Oculto la ventana Canje
-            vPremios.style.display="none";
-        })
+            if (idPremio !== '') {
+                const confirmacion = confirm('¿Desea eliminar el premio con Id ' + idPremio + '?');
+
+                if (confirmacion) {
+                    const estado = await eliminarPremio(idPremio);
+                    if (estado) {
+                        console.log('El premio se eliminó correctamente');
+                    } else {
+                        console.log('Hubo un error al eliminar el premio');
+                    }
+                }
+            } else {
+                console.log('No seleccionó ningún premio');
+            }
+        });
     }
     
 })
