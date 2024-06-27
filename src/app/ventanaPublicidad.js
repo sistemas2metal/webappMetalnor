@@ -1,17 +1,32 @@
+import {eliminarPublicidad} from './consultas.js'
+import { updateTablaPublicidad} from './updates.js';
+
 document.addEventListener('DOMContentLoaded',()=>{
 
     const vPublicidad = document.getElementById('ventanaPublicidad');
-    const btnVPubEliminar = document.getElementById('btnVPubEliminar');
+    const btnEliminarPublicidad = document.getElementById('btnVPubEliminar');
     const VPrincipal= document.getElementById('ventanaPrincipal');   //busco el elemento
 
+    if (btnEliminarPublicidad) {
+        btnEliminarPublicidad.addEventListener('click', async () => {
+            const idPublicidad = document.querySelector('#idPublicidad').value;
 
-    if (btnVPubEliminar){
-        btnVPubEliminar.addEventListener('click',()=>{
-            //Muestro la ventana Buscar
-            VPrincipal.style.display="block";
-            //Oculto la ventana Canje
-            vPublicidad.style.display="none";
-        })
+            if (idPublicidad !== '') {
+                const confirmacion = confirm('¿Desea eliminar la publicidad con Id ' + idPublicidad + '?');
+
+                if (confirmacion) {
+                    const estado = await eliminarPublicidad(idPublicidad);
+                    if (estado) {
+                        console.log('La publicidad se eliminó correctamente');
+                        updateTablaPublicidad();
+                    } else {
+                        console.log('Hubo un error al eliminar la publicidad');
+                    }
+                }
+            } else {
+                console.log('No seleccionó ninguna publicidad');
+            }
+        });
     }
     
 })

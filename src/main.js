@@ -31,6 +31,11 @@ window.radioClickedPremios = function (radio){
     console.log(idPremio.value);
 }
 
+window.radioClickedPublicidad = function (radio){
+        const idPublicidad = document.getElementById('idPublicidad');
+        idPublicidad.value = radio.value;
+        console.log(idPublicidad.value);
+}
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         //const querySnapshot = await getDocs(collection(db, 'posts'))

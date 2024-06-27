@@ -1,5 +1,5 @@
 
-import {getPremios} from './consultas.js'
+import {getPremios,getPublicidad} from './consultas.js'
 //------------------------------------ACTUALIZA LA TABLA DE BUSQUEDA--------------------------
 export function updateTable(usuarios) {
     const tbody = document.getElementById('tClientestbody');
@@ -68,15 +68,16 @@ export async function updateTablaPremios() {
     });
 } 
 //---------------------------------- ACTUALIZA LA TABLA PUBLICIDAD ----------------------------
-export function updateTablaPublicidad(publicidades) {
+export async function updateTablaPublicidad() {
     const tbody = document.getElementById('tPublicidad');
+    const publicidades = await getPublicidad();
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
 
     publicidades.forEach((publicidad) => {
         const tr = document.createElement('tr');
 
         const tdCheck = document.createElement('td');
-        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+publicidad.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+publicidad.id+'" id="flexRadioDefault1" onclick="radioClickedPublicidad(this)">'
         tr.appendChild(tdCheck);
 
         const tdTitulo = document.createElement('td');

@@ -48,9 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Ocultar el Menú Principal
             VPrincipal.style.display="none";
             //Buscar la publicidades
-            const publicidad = await getPublicidad();
+            
             //Actualizar la tabla
-            updateTablaPublicidad(publicidad);
+            updateTablaPublicidad();
             // Mostrar el div de Publicidad
             vPublicidad.style.display="block";
             barrConsola.innerHTML = "Módulo Publicidad";

@@ -215,7 +215,16 @@ export async function eliminarUsuario(idCliente) { // Función para eliminar un 
 //--------------------------CONSULTA PARA GUARDAR PUBLICIDAD ------------------------------
 //--------------------------CONSULTA PARA EDITAR PUBLICIDAD EXISTENTE------------------------------
 //--------------------------CONSULTA PARA ELIMINAR PUBLICIDAD ------------------------------
-
+export async function eliminarPublicidad(idPublicidad) {
+    try {
+        await deleteDoc(doc(db, 'posts', idPublicidad));
+        console.log('Publicidad eliminada correctamente');
+        return true;
+    } catch (error) {
+        console.error('Error al eliminar publicidad:', error);
+        return false;
+    }
+}
 //--------------------------CONSULTA PARA GUARDAR PREMIOS ---------------------------------- 
 //--------------------------CONSULTA PARA EDITAR PREMIO EXISTENTE ---------------------------------- 
 //--------------------------CONSULTA PARA ELIMINAR PREMIO ---------------------------------- 
