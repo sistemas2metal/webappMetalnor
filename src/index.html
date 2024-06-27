@@ -24,7 +24,7 @@
     <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
             <button class="btn btn-primary me-2" id="btn-inicio" alt="INICIO"><i class="fa-solid fa-house"></i></button>
-            <a class="navbar-brand" href="#">Consola Metalnor</a>
+            <h5 id="barConsola">Panel de Control</h5>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -87,7 +87,8 @@
                 <div class="btnClientesAccion form-group">
                     <button type="button" id="btn-datos" class="btn btn-outline-primary mt-2">Datos</button>
                     <button type="button" id="btn-canje" class="btn btn-outline-primary mt-2">Canjear</button>
-                    <button type="button" id="btn-historico" class="btn btn-outline-primary mt-2"  data-bs-toggle="modal" data-bs-target="#vHistoricoP">Histórico</button>
+                    <button type="button" id="btn-historico" class="btn btn-outline-primary mt-2" data-bs-toggle="modal"
+                        data-bs-target="#vHistoricoP">Histórico</button>
                 </div>
             </div>
         </div>
@@ -386,34 +387,35 @@
         </div>
     </div>
 
-<!----------------------------------- Ventana Historico de Puntos ------------------------------------>
-<div class="modal fade" id="vHistoricoP" tabindex="-1" aria-hidden="true"> 
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-dark">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalHistoricoP">Historico de Puntos</h1>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label>Nombre:</label>
-                <label id="labCliente">Jose</label>
-                <table class="table table-dark table-striped table-hover align-middle">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Vencimiento</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider" id="tHistoricoP">
-                        <!-- Aqui actualizo -->
-                    </tbody>
-                </table> 
+    <!----------------------------------- Ventana Historico de Puntos ------------------------------------>
+    <div class="modal fade" id="vHistoricoP" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalHistoricoP">Historico de Puntos</h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Nombre:</label>
+                    <label id="labCliente">Jose</label>
+                    <table class="table table-dark table-striped table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Vencimiento</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider" id="tHistoricoP">
+                            <!-- Aqui actualizo -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div> 
 
     <!------------------------------------MODAL SELECTOR DE PREMIOS------------------------------------>
     <div class="modal fade" id="selectorPremios" tabindex="-1" aria-hidden="true">
