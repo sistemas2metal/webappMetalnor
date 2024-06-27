@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded',function (){
     
     const vAbmCliente= document.getElementById('abmClientes');
     const VBuscar = document.getElementById('VentanaBuscar');
+    const barrConsola = document.getElementById('barConsola');
     
     if (Aceptar){
         Aceptar.addEventListener("click",()=>{
@@ -14,6 +15,8 @@ document.addEventListener('DOMContentLoaded',function (){
             vAbmCliente.style.display="none";
             //Mostrar ventana Buscar
             VBuscar.style.display="block";
+            //Cambio titulo de barra superior
+            barrConsola.innerHTML = "Módulo Clientes";
         })
     }
     if (Cancelar){

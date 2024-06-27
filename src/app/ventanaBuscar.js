@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputDni= document.querySelector('#dniUsuario');
     const btnHistorico = document.querySelector('#btn-historico');
     const btnEliminar = document.querySelector('#btnClienteEliminar');
+    const barrConsola = document.getElementById('barConsola');
     
+
     //-----------------ventana ABMClientes-----------
     const abmNombre = document.getElementById ('crud-nombre');
     const abmDomicilio = document.getElementById('crud-domicilio');
@@ -67,6 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
             //cargo los datos en la ventana ABMClientes
             // Muestro la ventana ABMClientes
             ABMClientes.style.display = "block";
+            //Cambio titulo de barra superior
+            barrConsola.innerHTML = "Información de Clientes";
 
         })
     if (btnCanje){
