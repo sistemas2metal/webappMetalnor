@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             if (idPremio !== '') {
                 const confirmacion = confirm('¿Desea eliminar el premio con Id ' + idPremio + '?');
-
                 if (confirmacion) {
                     const estado = await eliminarPremio(idPremio);
                     if (estado) {
                         console.log('El premio se eliminó correctamente');
+                        updateTablaPremios(premios)
                     } else {
                         console.log('Hubo un error al eliminar el premio');
                     }

@@ -32,10 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log('Botón Premios presionado');
              // Ocultar el Menú Principal
             VPrincipal.style.display="none";
-            // buscar los premios
-            const premios = await getPremios(); 
             // actualizar la tabla
-            updateTablaPremios(premios);
+            updateTablaPremios();
             // Mostrar el div de Premios
             vPremios.style.display="block";
             barrConsola.innerHTML = "Módulo Premios";

@@ -25,6 +25,11 @@ import './app/ventanaPublicidad.js'
 //import './app/mostrarUsuarios.js'
 //-----------------------------------------------------------------------------------------------------------------
 //window.idcliente = '';   // variable en donde guardo el cliente seleccionado
+window.radioClickedPremios = function (radio){
+    const idPremio = document.getElementById('idPremio');
+    idPremio.value = radio.value;
+    console.log(idPremio.value);
+}
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
