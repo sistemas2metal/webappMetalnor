@@ -96,3 +96,32 @@ export function updateTablaPublicidad(publicidades) {
         tbody.appendChild(tr);
     });
 } 
+
+
+//---------------------------------- ACTUALIZA LA TABLA HISTORICO ----------------------------
+export function updateTablaHistoricoP(puntos) {
+    const tbody = document.getElementById('tHistoricoP');
+    tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
+    console.log(puntos);
+    puntos.forEach((punto) => {
+        const tr = document.createElement('tr');
+
+        const tdCheck = document.createElement('td');
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+punto.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
+        tr.appendChild(tdCheck);
+
+        const tdCantidad = document.createElement('td');
+        tdCantidad.textContent = punto.cantidad;
+        tr.appendChild(tdCantidad);
+
+        const tdfecha = document.createElement('td');
+        tdfecha.textContent = punto.fecha;
+        tr.appendChild(tdfecha);
+
+        const tdFechaVen = document.createElement('td');
+        tdFechaVen.textContent = punto.fechaVen;
+        tr.appendChild(tdFechaVen);
+
+        tbody.appendChild(tr);
+    });
+} 

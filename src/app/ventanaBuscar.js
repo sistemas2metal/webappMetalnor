@@ -1,5 +1,5 @@
-import {getUsuariosPorNombre,getPuntosUsuarios,getClientesPorId} from './consultas.js'
-import {updateTable} from './updates.js'
+import {getUsuariosPorNombre,getPuntosUsuarios,getClientesPorId,getPuntosDelUsuarios} from './consultas.js'
+import {updateTable, updateTablaHistoricoP} from './updates.js'
 
 document.addEventListener("DOMContentLoaded", () => {
     const btnDatos = document.getElementById("btn-datos");
@@ -65,12 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    if (btnHistorico){
-        console.log('presione boton Historico');
-        //Oculto la ventana Buscar
-        VBuscar.style.display="none";
-        //Muestro la ventana Historico
-        vHistorico.style.display="block";
+    if(btnHistorico){
+        btnHistorico.addEventListener('click', async()=>{
+            const idcliente = document.getElementById('idcliente').value;
+            const labCliente = document.getElementById('labCliente');
+            const usuario = await getClientesPorId(idcliente); 
+             //Colocar el nombre del cliente en el label
+            labCliente.textContent = usuario.nombre;
+            //buscar todos los puntos del cliente
+            const puntos = await getPuntosDelUsuarios(idcliente);
+            //actualizar la tabla de Historico con los datos de la busqueda
+            updateTablaHistoricoP(puntos);
+            
+        });
     }
 
     if (btnBuscar) {
