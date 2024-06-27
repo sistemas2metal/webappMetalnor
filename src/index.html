@@ -51,18 +51,18 @@
         <div class="container mt-5 ">
             <div class="row">
                 <form id="findForm">
-                    <div class="row mb-4">
-                        <div class="col col-md-4">
+                    <div class="row g-3 mb-5">
+                        <div class="col-auto">
                             <label for="nombreUsuario" class="me-5 mb-2">Nombre :</label>
                             <input type="text" class="form-control" id="nombreUsuario" name="nombre"
                                 aria-label="First name">
                         </div>
-                        <div class="col col-md-3">
+                        <div class="col-auto">
                             <label for="dniUsuario" class="me-5 mb-2">DNI :</label>
                             <input type="number" class="form-control" type="number" id="dniUsuario" name="dni"
                                 aria-label="Last name">
                         </div>
-                        <div class="col col-md-3">
+                        <div class="col-auto">
                             <button type="button" id="btnBuscar" class="btn btn-outline-primary mt-2">Buscar</button>
                         </div>
                     </div>
@@ -150,8 +150,7 @@
     </div>
 
     <!----------------------------------- Ventana ABM Clientes ----------------------------------->
-    <div class="container" id="abmClientes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="container" id="abmClientes">
         <div class="modal-body">
             <form id="Clientes-form">
                 <label for="nombre">Nombre:</label>
@@ -171,12 +170,9 @@
                     placeholder="Email" required>
 
                 <label for="Puntos">Puntos:</label>
-                <div class="row">
-                    <div class="col-md-3">
-                        <input type="number" id="crud-puntos" style="color:black; width: 100px"
-                            class="form-control mb-2">
-                    </div>
-                    <div class="col-md-9">
+                <div class="col-3">
+                    <div class="input-group mb-5">
+                        <input type="number" id="crud-puntos" class="form-control">
                         <button type="button" class="btn btn-primary">
                             <i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#abmPuntos"
                                 alt="Editar Puntos"></i>
