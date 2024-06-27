@@ -1,4 +1,5 @@
 
+import {getPremios} from './consultas.js'
 //------------------------------------ACTUALIZA LA TABLA DE BUSQUEDA--------------------------
 export function updateTable(usuarios) {
     const tbody = document.getElementById('tClientestbody');
@@ -35,15 +36,16 @@ export function updateTable(usuarios) {
     });
 }
 //---------------------------------- ACTUALIZA LA TABLA PREMIOS -------------------------------
-export function updateTablaPremios(premios) {
+export async function updateTablaPremios() {
     const tbody = document.getElementById('tPremios');
+    const premios = await getPremios(); 
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
 
     premios.forEach((premio) => {
         const tr = document.createElement('tr');
 
         const tdCheck = document.createElement('td');
-        tdCheck.innerHTML = '<input class="form-check-input" type="radio" value="'+premio.id+'" onclick="radioClicked(this)">'
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+premio.id+'" id="flexRadioDefault1" onclick="radioClickedPremios(this)">'
         tr.appendChild(tdCheck);
 
         const tdNombre = document.createElement('td');
@@ -96,8 +98,6 @@ export function updateTablaPublicidad(publicidades) {
         tbody.appendChild(tr);
     });
 } 
-
-
 //---------------------------------- ACTUALIZA LA TABLA HISTORICO ----------------------------
 export function updateTablaHistoricoP(puntos) {
     const tbody = document.getElementById('tHistoricoP');
