@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const VPrincipal= document.getElementById('ventanaPrincipal');   //busco el elemento
     const vPremios = document.getElementById('ventanaPremios');
     const vPublicidad = document.getElementById('ventanaPublicidad');
+    const barrConsola = document.getElementById('barConsola');
 
 
     if (btnPrinClientes) {
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //console.log('Botón cliente presionado');
             VPrincipal.style.display = "none";
             VBuscar.style.display = "block";
+            barrConsola.innerHTML = "Módulo Clientes";
         });
     } else {
         console.log('El botón btnPrinClientes no se encontró');
@@ -36,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateTablaPremios(premios);
             // Mostrar el div de Premios
             vPremios.style.display="block";
+            barrConsola.innerHTML = "Módulo Premios";
         });
     } else {
         console.log('El botón btnPrinPremios no se encontró');
@@ -52,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateTablaPublicidad(publicidad);
             // Mostrar el div de Publicidad
             vPublicidad.style.display="block";
+            barrConsola.innerHTML = "Módulo Publicidad";
         });
     } else {
         console.log('El botón btnPrinPublicidad no se encontró');
@@ -74,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             vPremios.style.display="none";
             vPublicidad.style.display="none";
             VPrincipal.style.display="block";
+            barrConsola.innerHTML = "Panel de Control";
         })
     }
 });
