@@ -5,6 +5,9 @@ export function updateTable(usuarios) {
     const tbody = document.getElementById('tClientestbody');
     tbody.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
     
+    if (!Array.isArray(usuarios)) { //Verifico si es solo un objeto y lo transformo en un array de objetos
+        usuarios = [usuarios];
+    }
     usuarios.forEach((usuario) => {
         const tr = document.createElement('tr');
 

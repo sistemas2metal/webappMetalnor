@@ -13,14 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputDni= document.querySelector('#dniUsuario');
     const btnHistorico = document.querySelector('#btn-historico');
     const btnEliminar = document.querySelector('#btnClienteEliminar');
-    
+    const btnAgregar = document.querySelector('#btnClienteAgregar');
+
     //-----------------ventana ABMClientes-----------
     const abmNombre = document.getElementById ('crud-nombre');
     const abmDomicilio = document.getElementById('crud-domicilio');
     const abmDni = document.getElementById('crud-dni');
     const abmEmail = document.getElementById('crud-email');
     const abmPuntos = document.getElementById('crud-puntos');
+    const abmCel = document.getElementById('crud-cel');
     //-----------------------------------------------
+
     window.radioClicked = function (radio){
         const idcliente = document.getElementById('idcliente');
         idcliente.value = radio.value;
@@ -47,7 +50,24 @@ document.addEventListener("DOMContentLoaded", () => {
             
         });
     }
-
+    if (btnAgregar){
+        btnAgregar.addEventListener('click',()=>{
+        console.log('Estoy en Agregar');
+        // oculto la ventana Buscar
+        VBuscar.style.display = "none";
+        // borrar los campos de ABMClientes;
+        document.getElementById('crud-nombre').value = '';
+        document.getElementById('crud-domicilio').value='';
+        document.getElementById('crud-dni').value = '';
+        document.getElementById('crud-email').value = '';
+        document.getElementById('crud-puntos').value ='';
+        document.getElementById('crud-cel').value = '';
+        // elimino el cliente seleccionado
+        document.getElementById('idcliente').value = '';
+        // mostrar ventana ABMClientes
+        ABMClientes.style.display = "block";
+        });
+    };
 
     if (btnDatos) {
         btnDatos.addEventListener('click', async() => {
@@ -64,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
             abmDomicilio.value=usuario.domicilio;
             const puntos = await getPuntosUsuarios(idcliente);
             abmPuntos.value = puntos
+            abmCel.value = usuario.cel;
             //cargo los datos en la ventana ABMClientes
             // Muestro la ventana ABMClientes
             ABMClientes.style.display = "block";
