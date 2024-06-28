@@ -57,6 +57,19 @@ document.addEventListener('DOMContentLoaded',function (){
         
     }
 
+    const barrConsola = document.getElementById('barConsola');
+    
+    if (Aceptar){
+        Aceptar.addEventListener("click",()=>{
+            console.log('click en aceptar')
+            //Ocultar Ventana abmClientes
+            vAbmCliente.style.display="none";
+            //Mostrar ventana Buscar
+            VBuscar.style.display="block";
+            //Cambio titulo de barra superior
+            barrConsola.innerHTML = "Módulo Clientes";
+        })
+    }
     if (Cancelar){
         Cancelar.addEventListener("click",()=>{
             console.log('click en cancelar')

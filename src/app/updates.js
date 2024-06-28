@@ -110,10 +110,6 @@ export function updateTablaHistoricoP(puntos) {
     puntos.forEach((punto) => {
         const tr = document.createElement('tr');
 
-        const tdCheck = document.createElement('td');
-        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+punto.id+'" id="flexRadioDefault1" onclick="radioClicked(this)">'
-        tr.appendChild(tdCheck);
-
         const tdCantidad = document.createElement('td');
         tdCantidad.textContent = punto.cantidad;
         tr.appendChild(tdCantidad);

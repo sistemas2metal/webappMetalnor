@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             //console.log('Botón cliente presionado');
             VPrincipal.style.display = "none";
             VBuscar.style.display = "block";
+            //Cambio titulo de barra superior
             barrConsola.innerHTML = "Módulo Clientes";
         });
     } else {
