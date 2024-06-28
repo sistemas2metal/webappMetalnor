@@ -1,4 +1,4 @@
-import {collection, query, where, getDocs, Timestamp, deleteDoc,doc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import {collection, query, where, getDocs, Timestamp, deleteDoc,doc,addDoc,updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { db } from './firebase.js'
 
 //---------------- Función para formatear el objeto Timestamp a una cadena de fecha legible
@@ -186,7 +186,28 @@ export async function getPuntosDelUsuarios(id){
 }
 
 //--------------------------CONSULTA PARA GUARDAR UN NUEVO CLIENTE---------------------------
+export async function agregarCliente(cliente) {
+    try {
+        const docRef = await addDoc(collection(db, 'usuarios'), cliente);
+        console.log('Cliente agregado con ID:', docRef.id);
+        return true;
+    } catch (error) {
+        console.error('Error al agregar cliente:', error);
+        return false;
+    }
+}
 //--------------------------CONSULTA PARA EDITAR UN CLIENTE EXISTENTE--------------------------
+export async function actualizarCliente(idCliente, clienteActualizado) {
+    try {
+        const clienteRef = doc(db, 'usuarios', idCliente);
+        await updateDoc(clienteRef, clienteActualizado);
+        console.log('Cliente actualizado con ID:', idCliente);
+        return true;
+    } catch (error) {
+        console.error('Error al actualizar cliente:', error);
+        return false;
+    }
+}
 //--------------------------CONSULTA PARA ELIMINAR UN CLIENTE --------------------------
 export async function eliminarUsuario(idCliente) { // Función para eliminar un usuario por su idcliente
     try {

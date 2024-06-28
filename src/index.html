@@ -153,26 +153,25 @@
     <div class="container" id="abmClientes">
         <div class="modal-body">
             <form id="Clientes-form">
-                <label for="nombre">Nombre:</label>
+                <label for="crud-nombre">Nombre:</label>
                 <input type="text" id="crud-nombre" style="color:black; width: 300px" class="form-control mb-2"
                     placeholder="Nombre" required>
-
-                <label for="dni">Domicilio:</label>
+                    <label for="crud-domicilio">Domicilio:</label>
                 <input type="text" id="crud-domicilio" style="color: black;" class="form-control mb-2"
                     placeholder="Domicilio">
-
-                <label for="dni">DNI:</label>
-                <input type="number" id="crud-dni" style="color: black; width: 120px" class="form-control mb-2"
+                    <label for="crud-dni">DNI:</label>
+                <input type="number" id="crud-dni" style="color: black; width: 130px" class="form-control mb-2"
                     placeholder="Documento">
-
-                <label for="email">Email:</label>
-                <input type="email" id="crud-email" style="color:black; width: 350px" class="form-control mb-2"
+                    <label for="crud-email">E-mail:</label>
+                <input type="email" id="crud-email" style="color:black; width: 300px" class="form-control mb-2"
                     placeholder="Email" required>
-
-                <label for="Puntos">Puntos:</label>
+                    <label for="crud-cel">Celular:</label>
+                <input type="number" id="crud-cel" style="color:black; width: 130px" class="form-control mb-2"
+                placeholder="Celular" required>
                 <div class="col-3">
                     <div class="input-group mb-5">
-                        <input type="number" id="crud-puntos" class="form-control">
+                        <label for="crud-puntos">Puntos:</label>
+                        <input type="number" disabled id="crud-puntos" class="form-control" placeholder="Puntos">
                         <button type="button" class="btn btn-primary">
                             <i class="fa-solid fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#abmPuntos"
                                 alt="Editar Puntos"></i>
@@ -181,6 +180,7 @@
                 </div>
 
                 <button type="button" class="btn btn-primary" id="btnVClienteEditar">Editar</button>
+                <button type="button" class="btn btn-primary" id="btnVClienteActualiza">Actualizar</button>
                 <button type="submit" class="btn btn-primary" id="btnVClienteAceptar">Aceptar</button>
                 <button type="submit" class="btn btn-primary" id="btnVClienteCancelar">Cancelar</button>
             </form>
