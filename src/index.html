@@ -66,6 +66,7 @@
                         </div>
                     </div>
                 </form>
+                <hr class="mb-3">
                 <div class="col-md-12 table-responsive mb-2">
                     <table class="table table-dark table-striped table-hover align-middle">
                         <thead class="align-middle">
@@ -83,12 +84,13 @@
                         </tbody>
                     </table>
                 </div>
+                <hr class="mb-3">
                 <div class="btnClientesAccion form-group">
                     <button type="button" id="btnClienteEliminar" class="btn btn-primary mt-2">Eliminar</button>
                     <button type="button" id="btnClienteAgregar" class="btn btn-primary mt-2">Agregar</button>
-                    <button type="button" id="btn-datos" class="btn btn-outline-primary mt-2">Datos</button>
-                    <button type="button" id="btn-canje" class="btn btn-outline-primary mt-2">Canjear</button>
-                    <button type="button" id="btn-historico" class="btn btn-outline-primary mt-2" data-bs-toggle="modal"
+                    <button type="button" id="btn-datos" class="btn btn-primary mt-2">Datos</button>
+                    <button type="button" id="btn-canje" class="btn btn-primary mt-2">Canjear</button>
+                    <button type="button" id="btn-historico" class="btn btn-primary mt-2" data-bs-toggle="modal"
                         data-bs-target="#vHistoricoP">Histórico</button>
                 </div>
             </div>
@@ -156,18 +158,18 @@
                 <label for="crud-nombre">Nombre:</label>
                 <input type="text" id="crud-nombre" style="color:black; width: 300px" class="form-control mb-2"
                     placeholder="Nombre" required>
-                    <label for="crud-domicilio">Domicilio:</label>
+                <label for="crud-domicilio">Domicilio:</label>
                 <input type="text" id="crud-domicilio" style="color: black;" class="form-control mb-2"
                     placeholder="Domicilio">
-                    <label for="crud-dni">DNI:</label>
+                <label for="crud-dni">DNI:</label>
                 <input type="number" id="crud-dni" style="color: black; width: 130px" class="form-control mb-2"
                     placeholder="Documento">
-                    <label for="crud-email">E-mail:</label>
+                <label for="crud-email">E-mail:</label>
                 <input type="email" id="crud-email" style="color:black; width: 300px" class="form-control mb-2"
                     placeholder="Email" required>
-                    <label for="crud-cel">Celular:</label>
+                <label for="crud-cel">Celular:</label>
                 <input type="number" id="crud-cel" style="color:black; width: 130px" class="form-control mb-2"
-                placeholder="Celular" required>
+                    placeholder="Celular" required>
                 <div class="col-3">
                     <div class="input-group mb-5">
                         <label for="crud-puntos">Puntos:</label>
@@ -332,7 +334,7 @@
         <!-- Input oculto para almacenar el ID del premio a eliminar -->
         <input type="hidden" id="idPremio">
         <div class="row">
-            <div class="col-md-10 table-responsive mb-2">
+            <div class="col-md-10 table-responsive mx-auto mb-2">
                 <table class="table table-dark table-striped table-hover align-middle" id="tpremios">
                     <thead class="align-middle">
                         <tr>
@@ -347,11 +349,12 @@
                     </tbody>
                 </table>
             </div>
+            <hr class="mb-3">
             <div class="btnPremiosAccion form-group">
-                <button type="button" class="btn btn-outline-primary" id="btnPremioEliminar">Eliminar</button>
-                <button type="button" class="btn btn-outline-primary" id="btnVPremEditar" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary" id="btnPremioEliminar">Eliminar</button>
+                <button type="button" class="btn btn-primary" id="btnVPremEditar" data-bs-toggle="modal"
                     data-bs-target="#abmPremios">Editar</button>
-                <button type="button" class="btn btn-outline-primary" id="btnVPremAgregar" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary" id="btnVPremAgregar" data-bs-toggle="modal"
                     data-bs-target="#abmPremios">Agregar</button>
             </div>
         </div>
@@ -361,7 +364,7 @@
         <!-- Input oculto para almacenar el ID de la publicidad a eliminar -->
         <input type="hidden" id="idPublicidad">
         <div class="row">
-            <div class="col-md-12 table-responsive mb-2">
+            <div class="col-md-10 mx-auto table-responsive mb-2">
                 <table class="table table-dark table-striped table-hover align-middle">
                     <thead>
                         <tr>
@@ -376,11 +379,12 @@
                     </tbody>
                 </table>
             </div>
+            <hr>
             <div class="btnPublicidadAccion form-group">
-                <button type="button" class="btn btn-outline-primary" disabled id="btnVPubEliminar">Eliminar</button>
-                <button type="button" class="btn btn-outline-primary" disabled id="btnVPubEditar" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary" id="btnVPubEliminar">Eliminar</button>
+                <button type="button" class="btn btn-primary" id="btnVPubEditar" data-bs-toggle="modal"
                     data-bs-target="#abmPublicidad">Editar</button>
-                <button type="button" class="btn btn-outline-primary" id="btnVPubAgregar" data-bs-toggle="modal"
+                <button type="button" class="btn btn-primary" id="btnVPubAgregar" data-bs-toggle="modal"
                     data-bs-target="#abmPublicidad">Agregar</button>
             </div>
         </div>
