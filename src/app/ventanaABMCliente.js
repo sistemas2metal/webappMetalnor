@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',function (){
         Actualiza.style.display="block";
         Aceptar.style.display="none";
     }else{
-        console.log(idcliente.value);
+        //console.log(idcliente.value);
         Aceptar.style.display="block";
         Actualiza.style.display="none";
     }
