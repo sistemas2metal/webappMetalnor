@@ -2,7 +2,7 @@ import {getUsuariosPorNombre,getPuntosUsuarios,getClientesPorId,getPuntosDelUsua
 import {updateTable, updateTablaHistoricoP} from './updates.js'
 
 document.addEventListener("DOMContentLoaded", () => {
-    const btnDatos = document.getElementById("btn-datos");
+    const btnEditar = document.getElementById("btnClienteEditar");
     const VBuscar = document.getElementById("VentanaBuscar");
     const ABMClientes = document.getElementById("abmClientes");
     const vCanje = document.getElementById('ventanaCanje');
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnHistorico = document.querySelector('#btn-historico');
     const btnEliminar = document.querySelector('#btnClienteEliminar');
     const btnAgregar = document.querySelector('#btnClienteAgregar');
-
+    
     //-----------------ventana ABMClientes-----------
     const abmNombre = document.getElementById ('crud-nombre');
     const abmDomicilio = document.getElementById('crud-domicilio');
@@ -25,19 +25,20 @@ document.addEventListener("DOMContentLoaded", () => {
     //-----------------------------------------------
 
     window.radioClicked = function (radio){
-        const idcliente = document.getElementById('idcliente');
+        //const idcliente = document.getElementById('idcliente');
         idcliente.value = radio.value;
+       // console.log(idcliente);
     }
 
     if (btnEliminar){
         btnEliminar.addEventListener('click', async() =>{
-            const idCliente = document.querySelector('#idcliente').value;
+            //const idCliente = document.querySelector('#idcliente').value;
         
-            if (idCliente !=='' ){
-                const confirmacion = confirm('¿Desea eliminar el usuario con Id'+ idCliente + '?');       
+            if (idcliente.value !=='' ){
+                const confirmacion = confirm('¿Desea eliminar el usuario con Id'+ idCliente.value + '?');       
                 
                 if (confirmacion){
-                    const estado = await eliminarUsuario(idCliente);
+                    const estado = await eliminarUsuario(idCliente.value);
                     if (estado){
                         console.log('El usuario se eliminó correctamente');
                     }else{
@@ -69,27 +70,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    if (btnDatos) {
-        btnDatos.addEventListener('click', async() => {
-            console.log('Botón datos presionado');
-            // Busco si se hizo una selección 
-            // Si se hizo oculto la VentanaBuscar
-            VBuscar.style.display = "none";
-            //busco los datos del cliente
-            const idcliente = document.getElementById('idcliente').value;
-            const usuario = await getClientesPorId(idcliente); 
-            abmNombre.value = usuario.nombre;
-            abmDni.value=usuario.dni;
-            abmEmail.value=usuario.email;
-            abmDomicilio.value=usuario.domicilio;
-            const puntos = await getPuntosUsuarios(idcliente);
-            abmPuntos.value = puntos
-            abmCel.value = usuario.cel;
-            //cargo los datos en la ventana ABMClientes
-            // Muestro la ventana ABMClientes
-            ABMClientes.style.display = "block";
-
-        })
+    if (btnEditar) {
+        btnEditar.addEventListener('click', async() => {
+            if (idcliente.value !=='' ){    //Se seleccionó un usuario
+                console.log('Botón Editar presionado');
+                // Busco si se hizo una selección 
+                // Si se hizo oculto la VentanaBuscar
+                VBuscar.style.display = "none";
+                //busco los datos del cliente
+                const usuario = await getClientesPorId(idcliente.value); 
+                abmNombre.value = usuario.nombre;
+                abmDni.value=usuario.dni;
+                abmEmail.value=usuario.email;
+                abmDomicilio.value=usuario.domicilio;
+                const puntos = await getPuntosUsuarios(idcliente.value);
+                abmPuntos.value = puntos
+                abmCel.value = usuario.cel;
+                //cargo los datos en la ventana ABMClientes
+                // Muestro la ventana ABMClientes
+                ABMClientes.style.display = "block";
+            } else{
+                alert('Debe seleccionar un usuario!');
+            }
+        });
+    }
+        
     if (btnCanje){
             btnCanje.addEventListener('click', async ()=>{
                 //Oculto la ventana Buscar
@@ -98,26 +103,25 @@ document.addEventListener("DOMContentLoaded", () => {
                   //vincular el label con una variable
                 const LabelNombre = document.getElementById('pNombre');
                 //buscar el usuario por id
-                const idcliente = document.getElementById('idcliente').value
-                const usuario = await getClientesPorId(idcliente);
+                //const idcliente = document.getElementById('idcliente').value
+                const usuario = await getClientesPorId(idcliente.value);
                 //colocar el nombre en el Label 
                 LabelNombre.textContent=usuario.nombre;
                 inpCanPuntos.value = '';
                 inpCanDescripcion.value = '';
                 vCanje.style.display="block";
-            })
+            });
         }
-    }
 
     if(btnHistorico){
         btnHistorico.addEventListener('click', async()=>{
-            const idcliente = document.getElementById('idcliente').value;
+            //const idcliente = document.getElementById('idcliente').value;
             const labCliente = document.getElementById('labCliente');
-            const usuario = await getClientesPorId(idcliente); 
+            const usuario = await getClientesPorId(idcliente.value); 
              //Colocar el nombre del cliente en el label
             labCliente.textContent = usuario.nombre;
             //buscar todos los puntos del cliente
-            const puntos = await getPuntosDelUsuarios(idcliente);
+            const puntos = await getPuntosDelUsuarios(idcliente.value);
             //actualizar la tabla de Historico con los datos de la busqueda
             updateTablaHistoricoP(puntos);
             

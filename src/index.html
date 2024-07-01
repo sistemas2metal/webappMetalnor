@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <input type="hidden" id="idcliente" name="idcliente" />
+    <input type="hidden" id="idcliente" name="idcliente" value=""/>
     <!---------------------------------- BARRA DE NAVEGACION ------------------------------------>
     <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid">
@@ -86,7 +86,7 @@
                 <div class="btnClientesAccion form-group">
                     <button type="button" id="btnClienteEliminar" class="btn btn-primary mt-2">Eliminar</button>
                     <button type="button" id="btnClienteAgregar" class="btn btn-primary mt-2">Agregar</button>
-                    <button type="button" id="btn-datos" class="btn btn-outline-primary mt-2">Datos</button>
+                    <button type="button" id="btnClienteEditar" class="btn btn-outline-primary mt-2">Editar</button>
                     <button type="button" id="btn-canje" class="btn btn-outline-primary mt-2">Canjear</button>
                     <button type="button" id="btn-historico" class="btn btn-outline-primary mt-2" data-bs-toggle="modal"
                         data-bs-target="#vHistoricoP">Histórico</button>
@@ -178,11 +178,8 @@
                         </button>
                     </div>
                 </div>
-
-                <button type="button" class="btn btn-primary" id="btnVClienteEditar">Editar</button>
-                <button type="button" class="btn btn-primary" id="btnVClienteActualiza">Actualizar</button>
-                <button type="submit" class="btn btn-primary" id="btnVClienteAceptar">Aceptar</button>
-                <button type="submit" class="btn btn-primary" id="btnVClienteCancelar">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnVClienteAceptar">Aceptar</button>
+                <button type="button" class="btn btn-primary" id="btnVClienteCancelar">Cancelar</button>
             </form>
         </div>
     </div>
