@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
             //const idCliente = document.querySelector('#idcliente').value;
         
             if (idcliente.value !=='' ){
-                const confirmacion = confirm('¿Desea eliminar el usuario con Id'+ idCliente.value + '?');       
+                const confirmacion = confirm('¿Desea eliminar el usuario con Id'+ idcliente.value + '?');       
                 
                 if (confirmacion){
-                    const estado = await eliminarUsuario(idCliente.value);
+                    const estado = await eliminarUsuario(idcliente.value);
                     if (estado){
                         console.log('El usuario se eliminó correctamente');
                     }else{
@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
                   //vincular el label con una variable
                 const LabelNombre = document.getElementById('pNombre');
                 //buscar el usuario por id
-                //const idcliente = document.getElementById('idcliente').value
                 const usuario = await getClientesPorId(idcliente.value);
                 //colocar el nombre en el Label 
                 LabelNombre.textContent=usuario.nombre;

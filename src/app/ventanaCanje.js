@@ -17,16 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
             //!!!!!!!!!!!!!!!!Actualizar puntos Falta hacer 
             //Oculto la ventana 
             vCanje.style.display = "none";
-        })
-    }
+        });
+    };
 
     if (inpCanDescripcion) {
         inpCanDescripcion.addEventListener('click', () => {
             const modalElement = document.getElementById('selectorPremios');  //selecciono el objeto modal por su id
             modal = new bootstrap.Modal(modalElement);  // Crea una instancia del modal de Bootstrap  
             modal.show();    // Muestra el modal
-        })
-    }
+        });
+    };
 // --------Función para seleccionar una tarjeta
 window.seleccionar = async function (id){    
     //buscar en la base de datos de acuerdo al id 

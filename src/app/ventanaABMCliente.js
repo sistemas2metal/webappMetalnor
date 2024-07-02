@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded',function (){
     const Cancelar = document.getElementById('btnVClienteCancelar');
     const vAbmCliente= document.getElementById('abmClientes');
     const VBuscar = document.getElementById('VentanaBuscar');
-    //const idcliente = document.getElementById('idcliente').value;
-    console.log(idcliente.value);
+    
     if (Aceptar) {
         Aceptar.addEventListener('click', async () => {
             console.log('idcliente: '+idcliente.value);

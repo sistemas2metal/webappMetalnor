@@ -47,6 +47,10 @@ export async function updateTablaPremios() {
     premios.forEach((premio) => {
         const tr = document.createElement('tr');
 
+        const tdCheck = document.createElement('td');
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+premio.id+'" id="flexRadioDefault1" onclick="radioClickedPremios(this)">'
+        tr.appendChild(tdCheck);
+
         const tdNombre = document.createElement('td');
         tdNombre.textContent = premio.nombre;
         tr.appendChild(tdNombre);
@@ -74,7 +78,11 @@ export async function updateTablaPublicidad() {
 
     publicidades.forEach((publicidad) => {
         const tr = document.createElement('tr');
-
+        
+        const tdCheck = document.createElement('td');
+        tdCheck.innerHTML = '<input class="form-check-input" type="radio" name="flexRadioDefault" value="'+publicidad.id+'" id="flexRadioDefault1" onclick="radioClickedPublicidad(this)">'
+        tr.appendChild(tdCheck);
+        
         const tdTitulo = document.createElement('td');
         tdTitulo.textContent = publicidad.titulo;
         tr.appendChild(tdTitulo);

@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 </head>
 
 <body>
@@ -229,12 +227,20 @@
                             <input type="number" id="inputPuntos" style="width: 30%;" required style="color:black"
                                 class="form-control">
                         </div>
+                        <div class="mb-3 d-flex align-items-left">
+                            <label for="inputStock" class="col-sm-2 col-form-label">Stock:</label>
+                            <input type="number" id="inputStock" style="width: 30%;" required style="color:black"
+                                class="form-control">
+                        </div>
                         <div class="mb-3 d-flex align-items-center">
                             <label for="inputImagen" class="col-sm-2 col-form-label">Imagen:</label>
                             <input class="form-control mt-2" type="file" required id="inputImagen" multiple>
                         </div>
+                        <div class="mb-3 d-flex align-items-center">
+                            <img id="previewImagen" src="" alt="Imagen del premio" style="width: 7rem; max-width: 200px;">
+                        </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary mt-4">Aceptar</button>
+                            <button type="button" class="btn btn-primary mt-4" id="btnPremiosAceptar">Aceptar</button>
                         </div>
                     </form>
                 </div>
@@ -333,6 +339,7 @@
                 <table class="table table-dark table-striped table-hover align-middle" id="tpremios">
                     <thead class="align-middle">
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">Título</th>
                             <th scope="col">Descripcion</th>
                             <th scope="col">Puntos</th>
@@ -345,11 +352,9 @@
                 </table>
             </div>
             <div class="btnPremiosAccion form-group">
-                <button type="button" class="btn btn-outline-primary" id="btnPremioEliminar">Eliminar</button>
-                <button type="button" class="btn btn-outline-primary" id="btnVPremEditar" data-bs-toggle="modal"
-                    data-bs-target="#abmPremios">Editar</button>
-                <button type="button" class="btn btn-outline-primary" id="btnVPremAgregar" data-bs-toggle="modal"
-                    data-bs-target="#abmPremios">Agregar</button>
+                <button type="button" class="btn btn-outline-primary" id="btnVPremioEliminar">Eliminar</button>
+                <button type="button" class="btn btn-outline-primary" id="btnVPremioEditar" >Editar</button>
+                <button type="button" class="btn btn-outline-primary" id="btnVPremioAgregar" >Agregar</button>
             </div>
         </div>
     </div>
@@ -362,6 +367,7 @@
                 <table class="table table-dark table-striped table-hover align-middle">
                     <thead>
                         <tr>
+                            <th></th>
                             <th scope="col">Título</th>
                             <th scope="col">Contenido</th>
                             <th scope="col">Desde</th>
@@ -428,7 +434,15 @@
             </div>
         </div>
     </div>
-
+    
+    
+<!-- 
+<div>
+    <form action="" id="uploader">
+        <input type="file" name="file" id="file">
+        <button type="submit">Subir archivo</button>
+    </form> 
+</div> -->
 
     <!--Codigo de Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
