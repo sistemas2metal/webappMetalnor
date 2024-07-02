@@ -9,7 +9,7 @@ function formatDate(timestamp) {
     }
     return ''; // En caso de que no sea un Timestamp válido, devolver una cadena vacía
 }
-//---------------------OBTIENE LOS USUARIOS POR EL NOMBRE O EL DNI-------------------------
+//---------------------OBTIENE LOS USUARIOS POR EL NOMBRE O EL DNI----------------------------------------------------------------
 export async function getUsuariosPorNombre(nombre,dni) {
     const usuarios = collection(db, "usuarios");
     let q,consulta
@@ -41,7 +41,7 @@ export async function getUsuariosPorNombre(nombre,dni) {
     //console.log(usuariosArray);
     return usuariosArray; // Retorna el array de objetos como JSON
 }
-//-----------------OBTIENE UN ARRAY CON TODOS LOS PREMIOS-------------------------
+//-----------------OBTIENE UN ARRAY CON TODOS LOS PREMIOS-------------------------------------------------------------------------
 export async function getPremios() {
     const premios = collection(db, "premios");
     const querySnapshot = await getDocs(premios);
@@ -52,7 +52,7 @@ export async function getPremios() {
     }));
     return premiosArray;
 }
-//------------------OBTIENE EL PREMIO A PARTIR DEL ID DE PREMIO
+//------------------OBTIENE EL PREMIO A PARTIR DEL ID DE PREMIO-------------------------------------------------------------------
 export async function getPremioId(id){
     const premios = collection(db,"premios");
     const q = query(premios,where ("__name__","==",id));
@@ -69,7 +69,7 @@ export async function getPremioId(id){
         console.error("Error al obtener premio por ID:", error);
     }
 }
-// -------------Obtiene los puntos de cada usuario CONOCIENDO EL IDCLIENTE 
+// -------------Obtiene los puntos de cada usuario CONOCIENDO EL IDCLIENTE -------------------------------------------------------
 export async function getPuntosUsuarios(id){
     const puntosRef = collection(db,"puntos");
     const q = query(puntosRef,where("idcliente","==",String(id)));
@@ -93,7 +93,7 @@ export async function getPuntosUsuarios(id){
         
     }
 }
-//----------------------CONSULTA PARA OBTENER EL USUARIO POR EL ID ----------------
+//----------------------CONSULTA PARA OBTENER EL USUARIO POR EL ID ---------------------------------------------------------------
 export async function getClientesPorId(id){
     const usuariosRef = collection(db,"usuarios");
     const q = query(usuariosRef,where("__name__","==",id))
@@ -111,7 +111,7 @@ export async function getClientesPorId(id){
         console.error("Error al obtener Clientes por ID:",error);
     }
 } 
-//----------------------CONSULTA PARA OBTENER LOS PREMIOS ---------------------
+//----------------------CONSULTA PARA OBTENER LOS PREMIOS ------------------------------------------------------------------------
 export async function getPuntos(){
     try{
         const puntosRef=collection(db,"puntos");
@@ -125,7 +125,7 @@ export async function getPuntos(){
         console.log("Error al obtener los Puntos");
     }
 }
-//--------------------CONSULTA PARA OBTENER LAS PUBLICIDADES -------------------------
+//--------------------CONSULTA PARA OBTENER LAS PUBLICIDADES ---------------------------------------------------------------------
 export async function getPublicidad() {
     try {
         const publicidad = collection(db, "posts");
@@ -153,7 +153,7 @@ export async function getPublicidad() {
         console.log('error!', error);
     }
 }
-//--------------------CONSULTA PARA OBTENER LOS PUNTOS DEL USUARIO -------------------
+//--------------------CONSULTA PARA OBTENER LOS PUNTOS DEL USUARIO ---------------------------------------------------------------
 export async function getPuntosDelUsuarios(id){
     const puntosRef = collection(db,"puntos");
     const q = query(puntosRef,where("idcliente","==",String(id)));
@@ -184,8 +184,7 @@ export async function getPuntosDelUsuarios(id){
         
     }
 }
-
-//--------------------------CONSULTA PARA GUARDAR UN NUEVO CLIENTE---------------------------
+//--------------------------CONSULTA PARA GUARDAR UN NUEVO CLIENTE----------------------------------------------------------------
 export async function agregarCliente(cliente) {
     try {
         const docRef = await addDoc(collection(db, 'usuarios'), cliente);
@@ -196,7 +195,7 @@ export async function agregarCliente(cliente) {
         return false;
     }
 }
-//--------------------------CONSULTA PARA EDITAR UN CLIENTE EXISTENTE--------------------------
+//--------------------------CONSULTA PARA EDITAR UN CLIENTE EXISTENTE-------------------------------------------------------------
 export async function actualizarCliente(idCliente, clienteActualizado) {
     try {
         const clienteRef = doc(db, 'usuarios', idCliente);
@@ -208,7 +207,7 @@ export async function actualizarCliente(idCliente, clienteActualizado) {
         return false;
     }
 }
-//--------------------------CONSULTA PARA ELIMINAR UN CLIENTE --------------------------
+//--------------------------CONSULTA PARA ELIMINAR UN CLIENTE --------------------------------------------------------------------
 export async function eliminarUsuario(idCliente) { // Función para eliminar un usuario por su idcliente
     try {
         await deleteDoc(doc(db, 'usuarios', idCliente));
@@ -219,23 +218,64 @@ export async function eliminarUsuario(idCliente) { // Función para eliminar un 
         return false;
     }
 }
-
-//--------------------------CONSULTA PARA GUARDAR PUNTOS -----------------------------
-//--------------------------CONSULTA PARA EDITAR PUNTOS EXISTENTE--------------------------
-//--------------------------CONSULTA PARA ELIMINAR PUNTOS  -----------------------------------
-// export async function eliminarPunto(idPunto) { // Función para eliminar un usuario por su idcliente
-//     try {
-//         await deleteDoc(doc(db, 'puntos', idPunto));
-//         console.log('Puntos eliminado correctamente');
-//         return true;
-//     } catch (error) {
-//         console.error('Error al eliminar Puntos:', error);
-//         return false;
-//     }
-// }
-//--------------------------CONSULTA PARA GUARDAR PUBLICIDAD ------------------------------
-//--------------------------CONSULTA PARA EDITAR PUBLICIDAD EXISTENTE------------------------------
-//--------------------------CONSULTA PARA ELIMINAR PUBLICIDAD ------------------------------
+//--------------------------CONSULTA PARA GUARDAR PUNTOS -------------------------------------------------------------------------
+export async function agregarPuntos(puntos) {
+    try {
+        const docRef = await addDoc(collection(db, 'puntos'), puntos);
+        console.log('puntos agregado con ID:', docRef.id);
+        return true;
+    } catch (error) {
+        console.error('Error al agregar puntos:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA EDITAR PUNTOS EXISTENTE-----------------------------------------------------------------
+export async function actualizarPuntos(idPunto, puntoActualizado) {
+    try {
+        const puntosRef = doc(db, 'puntos', idPunto);
+        await updateDoc(puntosRef, puntoActualizado);
+        console.log('Puntos actualizado con ID:', idPunto);
+        return true;
+    } catch (error) {
+        console.error('Error al actualizar Puntos:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA ELIMINAR PUNTOS  -----------------------------------------------------------------------
+export async function eliminarPunto(idPunto) { // Función para eliminar un usuario por su idcliente
+    try {
+        await deleteDoc(doc(db, 'puntos', idPunto));
+        console.log('Puntos eliminado correctamente');
+        return true;
+    } catch (error) {
+        console.error('Error al eliminar Puntos:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA GUARDAR PUBLICIDAD ---------------------------------------------------------------------
+export async function agregarPublicidad(publicidad) {
+    try {
+        const docRef = await addDoc(collection(db, 'posts'), publicidad);
+        console.log('publicidad agregado con ID:', docRef.id);
+        return true;
+    } catch (error) {
+        console.error('Error al agregar publicidad:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA EDITAR PUBLICIDAD EXISTENTE-------------------------------------------------------------
+export async function actualizarPublicidad(idPublicidad, publicidadActualizado) {
+    try {
+        const publicidadRef = doc(db, 'posts', idPublicidad);
+        await updateDoc(publicidadRef, publicidadActualizado);
+        console.log('Publicidad actualizado con ID:', idPublicidad);
+        return true;
+    } catch (error) {
+        console.error('Error al actualizar Publicidad:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA ELIMINAR PUBLICIDAD --------------------------------------------------------------------
 export async function eliminarPublicidad(idPublicidad) {
     try {
         await deleteDoc(doc(db, 'posts', idPublicidad));
@@ -246,9 +286,30 @@ export async function eliminarPublicidad(idPublicidad) {
         return false;
     }
 }
-//--------------------------CONSULTA PARA GUARDAR PREMIOS ---------------------------------- 
-//--------------------------CONSULTA PARA EDITAR PREMIO EXISTENTE ---------------------------------- 
-//--------------------------CONSULTA PARA ELIMINAR PREMIO ---------------------------------- 
+//--------------------------CONSULTA PARA GUARDAR PREMIOS ------------------------------------------------------------------------
+export async function agregarPremios(premios) {
+    try {
+        const docRef = await addDoc(collection(db, 'premios'), premios);
+        console.log('premios agregado con ID:', docRef.id);
+        return true;
+    } catch (error) {
+        console.error('Error al agregar premios:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA EDITAR PREMIO EXISTENTE ----------------------------------------------------------------
+export async function actualizarPremios(idPremio, premioActualizado) {
+    try {
+        const premiosRef = doc(db, 'premios', idPremio);
+        await updateDoc(premiosRef, premioActualizado);
+        console.log('Premio actualizado con ID:', idPremio);
+        return true;
+    } catch (error) {
+        console.error('Error al actualizar Premio:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA ELIMINAR PREMIO ------------------------------------------------------------------------
 export async function eliminarPremio(idPremio) {
     try {
         await deleteDoc(doc(db, 'premios', idPremio));
@@ -259,11 +320,49 @@ export async function eliminarPremio(idPremio) {
         return false;
     }
 }
-//--------------------------CONSULTA PARA GUARDAR PROMOCION ---------------------------------- 
-//--------------------------CONSULTA PARA EDITAR UNA PROMOCION EXISTENE ---------------------------------- 
-//--------------------------CONSULTA PARA ELIMINAR PROMOCION ---------------------------------- 
-
-//--------------------------CONSULTA PARA GUARDAR EN AUDITORIA ---------------------------------- 
-//--------------------------CONSULTAR AUDITORIA ---------------------------------- 
-
-
+//--------------------------CONSULTA PARA GUARDAR PROMOCION ----------------------------------------------------------------------
+export async function agregarPromocion(promocion) {
+    try {
+        const docRef = await addDoc(collection(db, 'Promociones'), promocion);
+        console.log('promocion agregado con ID:', docRef.id);
+        return true;
+    } catch (error) {
+        console.error('Error al agregar promocion:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA EDITAR UNA PROMOCION EXISTENE ----------------------------------------------------------
+export async function actualizarPromocion(idPromocion, promocionesActualizado) {
+    try {
+        const promocionRef = doc(db, 'Promociones', idPromocion);
+        await updateDoc(promocionRef, promocionesActualizado);
+        console.log('Promocion actualizado con ID:', idPromocion);
+        return true;
+    } catch (error) {
+        console.error('Error al actualizar Promocion:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA ELIMINAR PROMOCION ---------------------------------------------------------------------
+export async function eliminarPromocion(idPromocion) {
+    try {
+        await deleteDoc(doc(db, 'Promociones', idPromocion));
+        console.log('Promocion eliminado correctamente');
+        return true;
+    } catch (error) {
+        console.error('Error al eliminar Promocion:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTA PARA GUARDAR EN AUDITORIA -------------------------------------------------------------------
+export async function agregarAuditoria(auditoria) {
+    try {
+        const docRef = await addDoc(collection(db, 'auditoria'), auditoria);
+        console.log('auditoria agregado con ID:', docRef.id);
+        return true;
+    } catch (error) {
+        console.error('Error al agregar auditoria:', error);
+        return false;
+    }
+}
+//--------------------------CONSULTAR AUDITORIA ----------------------------------------------------------------------------------
