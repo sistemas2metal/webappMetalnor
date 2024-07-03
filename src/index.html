@@ -302,18 +302,22 @@
                             <input type="text" id="iPubTitulo" style="color:black" class="form-control mb-2">
                         </div>
                         <div class="mb-3 d-flex align-items-center">
+                            <label for="iPubDescripcion" class="col-sm-2 col-form-label">Descripción:</label>
+                            <input type="text" id="iPubDescripcion" style="color:black" class="form-control mb-2">
+                        </div>
+                        <div class="mb-3 d-flex align-items-center">
                             <label for="iPubDesde" class="col-sm-2 col-form-label">Desde:</label>
                             <input type="date" id="iPubDesde" required style="color:black" class="form-control mb-2">
                         </div>
                         <div class="mb-3 d-flex align-items-center">
                             <label for="inputHasta" class="col-sm-2 col-form-label">Hasta:</label>
-                            <input type="date" id="inputHasta" required style="color:black" class="form-control mb-2">
+                            <input type="date" id="iPubHasta" required style="color:black" class="form-control mb-2">
                         </div>
                         <div class="mb-3 d-flex align-items-center">
-                            <input class="form-control" type="file" required id="inputFiles" multiple>
+                            <input class="form-control" type="file" required id="iPubImagen" multiple>
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button type="submit" class="btn btn-primary mt-4">Aceptar</button>
+                            <button type="button" id="btnAceptarPublicidad" class="btn btn-primary mt-4">Aceptar</button>
                         </div>
                     </form>
                 </div>
@@ -380,7 +384,7 @@
                         <tr>
                             <th></th>
                             <th scope="col">Título</th>
-                            <th scope="col">Contenido</th>
+                            <th scope="col">Descripcion</th>
                             <th scope="col">Desde</th>
                             <th scope="col">Hasta</th>
                         </tr>
@@ -393,10 +397,8 @@
             <hr>
             <div class="btnPublicidadAccion form-group">
                 <button type="button" class="btn btn-primary" id="btnVPubEliminar">Eliminar</button>
-                <button type="button" class="btn btn-primary" id="btnVPubEditar" data-bs-toggle="modal"
-                    data-bs-target="#abmPublicidad">Editar</button>
-                <button type="button" class="btn btn-primary" id="btnVPubAgregar" data-bs-toggle="modal"
-                    data-bs-target="#abmPublicidad">Agregar</button>
+                <button type="button" class="btn btn-primary" id="btnVPubEditar" >Editar</button>
+                <button type="button" class="btn btn-primary" id="btnVPubAgregar">Agregar</button>
             </div>
         </div>
     </div>
