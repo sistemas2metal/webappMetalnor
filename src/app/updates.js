@@ -87,9 +87,9 @@ export async function updateTablaPublicidad() {
         tdTitulo.textContent = publicidad.titulo;
         tr.appendChild(tdTitulo);
 
-        const tdContenido = document.createElement('td');
-        tdContenido.textContent = publicidad.contenido;
-        tr.appendChild(tdContenido);
+        const tdDescripcion = document.createElement('td');
+        tdDescripcion.textContent = publicidad.descripcion;
+        tr.appendChild(tdDescripcion);
 
         const tdDesde = document.createElement('td');
         tdDesde.textContent = publicidad.desde;

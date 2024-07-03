@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 // en Modal ABM Premios 
     if (btnPremiosAceptar) {
-        console.log(previewImagen);
+        
         btnPremiosAceptar.addEventListener('click', async () => {
             const inputTitulo = document.getElementById('inputTitulo').value;
             const inputDetalle = document.getElementById('inputDetalle').value;
