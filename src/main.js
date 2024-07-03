@@ -13,6 +13,7 @@ import './app/logout.js'
 import './app/signinForm.js'
 import './app/googleLogin.js'
 import './app/menuPrincipal.js'
+//import './app/ventanaBuscar.js'
 import './app/ventanabuscar.js'
 import './app/ventanaABMCliente.js'
 import './app/ventanaCanje.js'
@@ -29,15 +30,23 @@ import './app/ventanaPublicidad.js'
 var idcliente
 var idPremio
 var idPublicidad
+var barrConsola
 
 idcliente = document.getElementById('idcliente');
 idPremio = document.querySelector('#idPremio');
 idPublicidad = document.getElementById('idPublicidad');
+idPunto = document.getElementById('idPunto');
+//barrConsola = document.getElementById('barConsola'); //Variable de barra superior
 
 
 window.radioClickedPublicidad = function (radio){
         idPublicidad.value = radio.value;
         console.log(idPublicidad.value);
+}
+
+window.radioClickedHistorico = function (radio){
+        idPunto.value = radio.value;
+        console.log(idPunto.value);
 }
 
 onAuthStateChanged(auth, async (user) => {

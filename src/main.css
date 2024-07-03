@@ -21,6 +21,10 @@ body{
     height: 100vh;
 }
 
+#ventanaHistoricoP{
+    display: none;
+}
+
 #VentanaBuscar {
     display: none;
 }
