@@ -153,6 +153,23 @@ export async function getPublicidad() {
         console.log('error!', error);
     }
 }
+//---------------------OBTENER PUBLICIDAD POR EL ID-------------------------------------------------------------------------------
+export async function getPublicidadId(id){
+    const publicidad = collection(db,"posts");
+    const q = query(publicidad,where ("__name__","==",id));
+    try{
+        const querySnapshot = await getDocs(q);
+        const datosArray = querySnapshot.docs.map( doc =>{
+            return {
+                id: doc.id,
+                ...doc.data() 
+            };
+        });
+        return datosArray;
+    } catch (error) {
+        console.error("Error al obtener la publicidad por ID:", error);
+    }
+}
 //--------------------CONSULTA PARA OBTENER LOS PUNTOS DEL USUARIO ---------------------------------------------------------------
 export async function getPuntosDelUsuarios(id){
     const puntosRef = collection(db,"puntos");

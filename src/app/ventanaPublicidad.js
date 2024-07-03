@@ -1,4 +1,4 @@
-import {actualizarPublicidad, eliminarPublicidad, agregarPublicidad} from './consultas.js'
+import {actualizarPublicidad, eliminarPublicidad, agregarPublicidad,getPublicidadId} from './consultas.js'
 import { updateTablaPublicidad} from './updates.js';
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -14,6 +14,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     const modalPublicidad = new bootstrap.Modal(modalElement3);
     //const previewImagen = document.getElementById('previewImagen');
     
+    async function cargarDatosPublicidad(id) {
+        const publicidad = await getPublicidadId(id);
+        if (publicidad) {
+            document.getElementById('iPubTitulo').value = publicidad[0].titulo;
+            document.getElementById('iPubDescripcion').value = publicidad[0].descripcion;
+            document.getElementById('iPubDesde').value = publicidad[0].desde;
+            document.getElementById('iPubHasta').value = publicidad[0].hasta;
+            //previewImagen.src = premio[0].imagen;
+        }
+    }
+
     if (btnEliminarPublicidad) {
         btnEliminarPublicidad.addEventListener('click', async () => {
             const idPublicidad = document.querySelector('#idPublicidad').value;
@@ -33,6 +44,13 @@ document.addEventListener('DOMContentLoaded',()=>{
             } else {
                 console.log('No seleccionó ninguna publicidad');
             }
+        });
+    }
+    if (btnVPubEditar) {
+        btnVPubEditar.addEventListener('click', async () => {
+            console.log(idPublicidad.value);
+            cargarDatosPublicidad(idPublicidad.value);
+            modalPublicidad.show();
         });
     }
     if (btnVPubAgregar) {
@@ -68,7 +86,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 imagen: './image/'+inputImagen.name
             };
             
-            if (idPremio.value !== '') {                           //si seleccione un item entonces Edito
+            if (idPublicidad.value !== '') {                           //si seleccione un item entonces Edito
                 console.log('Metodo Editar Premio');
                 if (inputTitulo && inputDescripcion && inputDesde && inputHasta) {   //controlo que se hallan cargado los datos
                     const publicidadActualizado = {
