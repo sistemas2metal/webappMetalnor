@@ -1,4 +1,4 @@
-import { getPremios, getPublicidad} from './consultas.js';
+import { getPremios, getPublicidad,canjearPuntos} from './consultas.js';
 import {updateTablaPremios,updateTablaPublicidad} from './updates.js';
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
             barrConsola.innerHTML = "Panel de Control";
         })
     }
+    
 });
 
 

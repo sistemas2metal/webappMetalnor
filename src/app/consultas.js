@@ -1,4 +1,4 @@
-import {collection, query, where, getDocs, Timestamp, deleteDoc,doc,addDoc,updateDoc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import {collection, query, where, getDocs, Timestamp, deleteDoc,doc,addDoc,updateDoc,orderBy, limit } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { db } from './firebase.js'
 
 //---------------- Función para formatear el objeto Timestamp a una cadena de fecha legible
@@ -258,7 +258,55 @@ export async function actualizarPuntos(idPunto, puntoActualizado) {
         return false;
     }
 }
-//--------------------------CONSULTA PARA ELIMINAR PUNTOS  -----------------------------------------------------------------------
+//--------------------------CONSULTA CANJEAR PUNTOS-------------------------------------------------------------------------------
+export async function canjearPuntos(cantidad,idCliente){
+    let remainingCantidad = cantidad;
+    //mientras cantidad > 0 
+    
+    while (remainingCantidad > 0) {
+        // Buscar los puntos más antiguos
+        const puntosQuery = query(
+            collection(db, 'puntos'),
+            where('idcliente', '==', idCliente),
+            orderBy('fecha'),
+            limit(1)
+        );
+        
+        const puntosSnapshot = await getDocs(puntosQuery);
+
+        if (puntosSnapshot.empty) {
+            console.log('No hay más puntos disponibles para canjear.');
+            break;
+        }
+
+        for (const puntosDoc of puntosSnapshot.docs) {
+            const puntosData = puntosDoc.data();
+            const puntosId = puntosDoc.id;
+            const puntosCantidad = puntosData.cantidad;
+
+            if (remainingCantidad >= puntosCantidad) {
+                // Restar los puntos de la cantidad y eliminar el registro
+                remainingCantidad -= puntosCantidad;
+                await deleteDoc(doc(db, 'puntos', puntosId));
+                console.log(`Se eliminaron ${puntosCantidad} puntos (ID: ${puntosId}).`);
+            } else {
+                // Restar los puntos de la cantidad y actualizar el registro
+                const nuevosPuntosCantidad = puntosCantidad - remainingCantidad;
+                await updateDoc(doc(db, 'puntos', puntosId), {
+                    cantidad: nuevosPuntosCantidad
+                });
+                console.log(`Se actualizaron los puntos (ID: ${puntosId}) a ${nuevosPuntosCantidad} puntos.`);
+                remainingCantidad = 0;
+            }
+        }
+    }
+
+    if (remainingCantidad > 0) {
+        console.log(`No se pudieron canjear ${remainingCantidad} puntos porque no hay suficientes puntos disponibles.`);
+    }
+
+}
+//--------------------------CONSULTA PARA ELIMINAR PUNTOS POR ID  ----------------------------------------------------------------
 export async function eliminarPunto(idPunto) { // Función para eliminar un usuario por su idcliente
     try {
         await deleteDoc(doc(db, 'puntos', idPunto));
@@ -382,4 +430,5 @@ export async function agregarAuditoria(auditoria) {
         return false;
     }
 }
+
 //--------------------------CONSULTAR AUDITORIA ----------------------------------------------------------------------------------

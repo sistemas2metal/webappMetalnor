@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 descripcion: inputDescripcion,
                 desde: inputDesde,
                 hasta: inputHasta,
-                imagen: './image/'+inputImagen.name
+                imagen: './image/' + inputImagen.name
             };
             
             if (idPublicidad.value !== '') {                           //si seleccione un item entonces Edito
@@ -127,5 +127,4 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
         });
     }
-
 })
