@@ -67,7 +67,7 @@
                 <hr class="mb-3">
                 <div class="col-md-12 table-responsive mb-2">
                     <table class="table table-dark table-striped table-hover align-middle">
-                        <thead class="align-middle">
+                        <thead class="headtablaclientes align-middle">
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Nombre</th>
@@ -77,7 +77,7 @@
                                 <th scope="col">Puntos</th>
                             </tr>
                         </thead>
-                        <tbody id="tClientestbody" class="table-group-divider">
+                        <tbody id="tClientestbody">
                             <!--Aqui actualizo-->
                         </tbody>
                     </table>
@@ -185,7 +185,6 @@
                 <div class="p-2">
                     <button type="button" class="btn btn-primary" id="btnVClienteCancelar">Cancelar</button>
                 </div>
-
             </div>
         </div>
     </div>
@@ -245,7 +244,8 @@
                             <input class="form-control mt-2" type="file" required id="inputImagen" multiple>
                         </div>
                         <div class="mb-3 d-flex align-items-center">
-                            <img id="previewImagen" src="" alt="Imagen del premio" style="width: 7rem; max-width: 200px;">
+                            <img id="previewImagen" src="" alt="Imagen del premio"
+                                style="width: 7rem; max-width: 200px;">
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="button" class="btn btn-primary mt-4" id="btnPremiosAceptar">Aceptar</button>
@@ -361,7 +361,7 @@
             </div>
             <hr class="mb-3">
             <div class="btnPremiosAccion form-group">
-                <button type="button" class="btn btn-primary" id="btnPremioEliminar">Eliminar</button>
+                <button type="button" class="btn btn-danger" id="btnPremioEliminar">Eliminar</button>
                 <button type="button" class="btn btn-primary" id="btnVPremEditar" data-bs-toggle="modal"
                     data-bs-target="#abmPremios">Editar</button>
                 <button type="button" class="btn btn-primary" id="btnVPremAgregar" data-bs-toggle="modal"
@@ -392,7 +392,7 @@
             </div>
             <hr>
             <div class="btnPublicidadAccion form-group">
-                <button type="button" class="btn btn-primary" id="btnVPubEliminar">Eliminar</button>
+                <button type="button" class="btn btn-danger" id="btnVPubEliminar">Eliminar</button>
                 <button type="button" class="btn btn-primary" id="btnVPubEditar" data-bs-toggle="modal"
                     data-bs-target="#abmPublicidad">Editar</button>
                 <button type="button" class="btn btn-primary" id="btnVPubAgregar" data-bs-toggle="modal"
@@ -446,9 +446,9 @@
             </div>
         </div>
     </div>
-    
-    
-<!-- 
+
+
+    <!-- 
 <div>
     <form action="" id="uploader">
         <input type="file" name="file" id="file">
