@@ -33,6 +33,7 @@ var idPremio
 var idPublicidad
 var idPunto
 
+
 idcliente = document.getElementById('idcliente');
 idPremio = document.querySelector('#idPremio');
 idPublicidad = document.getElementById('idPublicidad');

@@ -3,9 +3,11 @@ import { getPremios, getPremioId, getPuntosUsuarios,canjearPuntos } from './cons
 document.addEventListener('DOMContentLoaded', () => {
 
     const btnCanje = document.getElementById('btnVCanjear');
+    const btnCancelar = document.getElementById('btnVCancelar');
     const vCanje = document.getElementById('ventanaCanje');
     const VBuscar = document.getElementById('VentanaBuscar');
     const inpCanDescripcion = document.getElementById('inpCanDescripcion');
+    const barrConsola = document.getElementById('barConsola');
 
     let modal; 
 
@@ -18,16 +20,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 canjearPuntos(puntosCanje.value,idcliente.value);
                 vCanje.style.display = "none"; //Oculto la ventana 
                 VBuscar.style.display = "block";
+                barrConsola.innerHTML = "Módulo Clientes";
             }else{
                 alert('No alcanzan los puntos!');
             }
+            vCanje.style.display = "none";
             //Muestro la ventana Buscar
             VBuscar.style.display = "block";
+            barrConsola.innerHTML = "Módulo Clientes";
             //!!!!!!!!!!!!!!!!Actualizar puntos Falta hacer 
             
             //vCanje.style.display = "none";
         });
     };
+
+    if (btnCancelar) {
+        btnCancelar.addEventListener('click', async () => {
+            vCanje.style.display = "none";
+            //Muestro la ventana Buscar
+            VBuscar.style.display = "block";
+            barrConsola.innerHTML = "Módulo Clientes";
+        });
+    }
 
     if (inpCanDescripcion) {
         inpCanDescripcion.addEventListener('click', () => {
