@@ -344,7 +344,10 @@
                     <input type="text" id="inpCanDescripcion" style="width: 40%;" name="inpCanDescripcion"
                         class="form-control mb-2">
                 </div>
-                <button type="button" class="btn btn-primary mt-2" id="btnVCanjear">Canjear</button>
+                <div class="btnCanjearAccion">
+                    <button type="button" class="btn btn-danger mt-2" id="btnVCancelar">Cancelar</button>
+                    <button type="button" class="btn btn-success mt-2" id="btnVCanjear">Canjear</button>
+                </div>
             </div>
         </div>
     </div>
@@ -373,10 +376,8 @@
             <hr class="mb-3">
             <div class="btnPremiosAccion form-group">
                 <button type="button" class="btn btn-danger" id="btnPremioEliminar">Eliminar</button>
-                <button type="button" class="btn btn-primary" id="btnVPremEditar" data-bs-toggle="modal"
-                    data-bs-target="#abmPremios">Editar</button>
-                <button type="button" class="btn btn-primary" id="btnVPremAgregar" data-bs-toggle="modal"
-                    data-bs-target="#abmPremios">Agregar</button>
+                <button type="button" class="btn btn-primary" id="btnVPremioEditar">Editar</button>
+                <button type="button" class="btn btn-primary" id="btnVPremioAgregar">Agregar</button>
             </div>
         </div>
     </div>
@@ -412,7 +413,7 @@
 
     <!----------------------------------- Ventana Historico de Puntos ------------------------------------>
     <div id="ventanaHistoricoP">
-        <input type="hidden" id="idpunto" name="idpunto" value="" />
+        <input type="hidden" id="idPunto" name="idpunto" value="" />
         <div class="container mt-5">
             <div class="row">
                 <div class="modal-body">

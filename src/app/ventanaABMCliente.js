@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded',function (){
     const Cancelar = document.getElementById('btnVClienteCancelar');
     const vAbmCliente= document.getElementById('abmClientes');
     const VBuscar = document.getElementById('VentanaBuscar');
+    const barrConsola = document.getElementById('barConsola');
     
     if (Aceptar) {
         Aceptar.addEventListener('click', async () => {
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded',function (){
                         document.getElementById('dniUsuario').value = '';
                         //Muestro la venta Buscar
                         VBuscar.style.display='block';
+                        barrConsola.innerHTML = "Módulo Clientes";
                     } else {
                         console.log('Hubo un error al actualizar el cliente');
                     }
@@ -73,6 +75,7 @@ document.addEventListener('DOMContentLoaded',function (){
                         vAbmCliente.style.display='none';
                         //Muestro la venta Buscar
                         VBuscar.style.display='block';
+                        barrConsola.innerHTML = "Módulo Clientes";
                         
                     } else {
                         console.log('Hubo un error al agregar el cliente');
@@ -92,6 +95,7 @@ document.addEventListener('DOMContentLoaded',function (){
             vAbmCliente.style.display="none";
             //Mostrar ventana Buscar
             VBuscar.style.display="block";
+            barrConsola.innerHTML = "Módulo Clientes";
         })
     }
 

@@ -30,6 +30,7 @@ import './app/ventanaPublicidad.js'
 var idcliente
 var idPremio
 var idPublicidad
+var idPunto
 var barrConsola
 
 idcliente = document.getElementById('idcliente');

@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnCanje = document.getElementById('btn-canje');
     const inpCanPuntos = document.getElementById('inpCanPuntos');
     const inpCanDescripcion = document.getElementById('inpCanDescripcion')
-    const inputName= document.querySelector('#nombreUsuario')                            //selecciono el elemento al cual tengo que modificar 
+    const inputName= document.querySelector('#nombreUsuario')                            //selecciono el elemento al cual tengo que modificar
+    const barrConsola = document.getElementById('barConsola');
     const inputDni= document.querySelector('#dniUsuario');
     const btnHistorico = document.querySelector('#btn-historico');
     const btnEliminar = document.querySelector('#btnClienteEliminar');
@@ -47,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
             }else {
+                alert('Debe seleccionar un usuario!');
                 console.log('No seleccionó ningún usuario');
             }  
             
@@ -68,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('idcliente').value = '';
         // mostrar ventana ABMClientes
         ABMClientes.style.display = "block";
+        barrConsola.innerHTML = "Agregar un Cliente";
         });
     };
 
@@ -90,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 //cargo los datos en la ventana ABMClientes
                 // Muestro la ventana ABMClientes
                 ABMClientes.style.display = "block";
+                barrConsola.innerHTML = "Edición de Cliente";
             } else{
                 alert('Debe seleccionar un usuario!');
             }
@@ -98,36 +102,47 @@ document.addEventListener("DOMContentLoaded", () => {
         
     if (btnCanje){
             btnCanje.addEventListener('click', async ()=>{
-                //Oculto la ventana Buscar
-                VBuscar.style.display="none";
-                //Muestro la ventana Canje
-                  //vincular el label con una variable
-                const LabelNombre = document.getElementById('pNombre');
-                //buscar el usuario por id
-                const usuario = await getClientesPorId(idcliente.value);
-                //colocar el nombre en el Label 
-                LabelNombre.textContent=usuario.nombre;
-                inpCanPuntos.value = '';
-                inpCanDescripcion.value = '';
-                vCanje.style.display="block";
+                if (idcliente.value !=='' ){
+                    //Oculto la ventana Buscar
+                    VBuscar.style.display="none";
+                    //Muestro la ventana Canje
+                      //vincular el label con una variable
+                    const LabelNombre = document.getElementById('pNombre');
+                    //buscar el usuario por id
+                    const usuario = await getClientesPorId(idcliente.value);
+                    //colocar el nombre en el Label 
+                    LabelNombre.textContent=usuario.nombre;
+                    inpCanPuntos.value = '';
+                    inpCanDescripcion.value = '';
+                    VHistoricoP.style.display = "none";
+                    vCanje.style.display="block";
+                    barrConsola.innerHTML = "Canje de Puntos";
+                } else{
+                    alert('Debe seleccionar un usuario!');
+                }
             });
         }
 
     if(btnHistorico){
         btnHistorico.addEventListener('click', async()=>{
-            //const idcliente = document.getElementById('idcliente').value;
-            // oculto la ventana Buscar
-            VBuscar.style.display = "none";
-            const labCliente = document.getElementById('labCliente');
-            const usuario = await getClientesPorId(idcliente.value); 
-             //Colocar el nombre del cliente en el label
-            labCliente.textContent = usuario.nombre;
-            //buscar todos los puntos del cliente
-            const puntos = await getPuntosDelUsuarios(idcliente.value);
-            //actualizar la tabla de Historico con los datos de la busqueda
-            updateTablaHistoricoP(puntos);
-            VHistoricoP.style.display = "block";
-            barrConsola.innerHTML = "Histórico de Puntos";
+            if (idcliente.value !=='' ){
+                //const idcliente = document.getElementById('idcliente').value;
+                // oculto la ventana Buscar
+                VBuscar.style.display = "none";
+                const labCliente = document.getElementById('labCliente');
+                const usuario = await getClientesPorId(idcliente.value); 
+                 //Colocar el nombre del cliente en el label
+                labCliente.textContent = usuario.nombre;
+                //buscar todos los puntos del cliente
+                const puntos = await getPuntosDelUsuarios(idcliente.value);
+                //actualizar la tabla de Historico con los datos de la busqueda
+                updateTablaHistoricoP(puntos);
+                vCanje.style.display="none";
+                VHistoricoP.style.display = "block";
+                barrConsola.innerHTML = "Histórico de Puntos";
+            } else{
+                alert('Debe seleccionar un usuario!');
+            }
         });
     }
 
