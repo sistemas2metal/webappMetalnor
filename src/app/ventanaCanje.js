@@ -1,4 +1,4 @@
-import { getPremios, getPremioId } from './consultas.js'
+import { getPremios, getPremioId, getPuntosUsuarios,canjearPuntos } from './consultas.js'
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -6,17 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const vCanje = document.getElementById('ventanaCanje');
     const VBuscar = document.getElementById('VentanaBuscar');
     const inpCanDescripcion = document.getElementById('inpCanDescripcion');
-  
 
     let modal; 
 
     if (btnCanje) {
-        btnCanje.addEventListener('click', () => {
+        btnCanje.addEventListener('click', async () => {
+            const puntosCanje = document.getElementById('inpCanPuntos'); 
+            const puntos = await getPuntosUsuarios(idcliente.value);
+            if  (puntosCanje.value < puntos){
+                console.log(puntosCanje.value < puntos);
+                canjearPuntos(puntosCanje.value,idcliente.value);
+                vCanje.style.display = "none"; //Oculto la ventana 
+                VBuscar.style.display = "block";
+            }else{
+                alert('No alcanzan los puntos!');
+            }
             //Muestro la ventana Buscar
             VBuscar.style.display = "block";
             //!!!!!!!!!!!!!!!!Actualizar puntos Falta hacer 
-            //Oculto la ventana 
-            vCanje.style.display = "none";
+            
+            //vCanje.style.display = "none";
         });
     };
 
