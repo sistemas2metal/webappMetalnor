@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     }
                 }
             } else {
+                alert('Debe seleccionar una publicidad');
                 console.log('No seleccionó ninguna publicidad');
             }
         });

@@ -44,9 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnVPremioEditar) {
         btnVPremioEditar.addEventListener('click', async () => {
-            console.log(idPremio.value);
-            cargarDatosPremio(idPremio.value);
-            modalPremios.show();
+            if (idPremio.value !== '') {
+                console.log(idPremio.value);
+                cargarDatosPremio(idPremio.value);
+                modalPremios.show();
+            } else {
+                alert('Debe seleccionar un premio!');
+            }
         });
     }
 
@@ -64,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } else {
+                alert('Debe seleccionar un premio');
                 console.log('No seleccionó ningún premio');
             }
         });
