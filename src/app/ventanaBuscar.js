@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnEditar = document.getElementById("btnClienteEditar");
     const VBuscar = document.getElementById("VentanaBuscar");
     const ABMClientes = document.getElementById("abmClientes");
+    const VHistoricoP = document.getElementById("ventanaHistoricoP");
     const vCanje = document.getElementById('ventanaCanje');
     const btnCanje = document.getElementById('btn-canje');
     const inpCanPuntos = document.getElementById('inpCanPuntos');
@@ -115,6 +116,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if(btnHistorico){
         btnHistorico.addEventListener('click', async()=>{
             //const idcliente = document.getElementById('idcliente').value;
+            // oculto la ventana Buscar
+            VBuscar.style.display = "none";
             const labCliente = document.getElementById('labCliente');
             const usuario = await getClientesPorId(idcliente.value); 
              //Colocar el nombre del cliente en el label
@@ -123,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const puntos = await getPuntosDelUsuarios(idcliente.value);
             //actualizar la tabla de Historico con los datos de la busqueda
             updateTablaHistoricoP(puntos);
-            
+            VHistoricoP.style.display = "block";
+            barrConsola.innerHTML = "Histórico de Puntos";
         });
     }
 

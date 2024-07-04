@@ -3,6 +3,10 @@ body{
     color: white;
 }
 
+.containerPrincipal {
+    max-height: 80vh;
+}
+
 .table th {
     background-color: #191824;
     text-align: center;
@@ -15,6 +19,10 @@ body{
 
 .full-height {
     height: 100vh;
+}
+
+#ventanaHistoricoP{
+    display: none;
 }
 
 #VentanaBuscar {

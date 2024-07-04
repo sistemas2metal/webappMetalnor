@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const vCanje = document.getElementById('ventanaCanje');
     const VBuscar = document.getElementById('VentanaBuscar');
     const ABMClientes = document.getElementById("abmClientes");
+    const VHistoricoP = document.getElementById("ventanaHistoricoP");
     const VPrincipal= document.getElementById('ventanaPrincipal');   //busco el elemento
     const vPremios = document.getElementById('ventanaPremios');
     const vPublicidad = document.getElementById('ventanaPublicidad');
@@ -76,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ABMClientes.style.display="none";
             vPremios.style.display="none";
             vPublicidad.style.display="none";
+            VHistoricoP.style.display="none";
             VPrincipal.style.display="block";
             barrConsola.innerHTML = "Panel de Control";
         })
