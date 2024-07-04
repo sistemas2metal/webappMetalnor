@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (btnEliminarPremio) {
-        btnEliminarPremio.addEventListener('click', async () => {
+    if (btnPremioEliminar) {
+        btnPremioEliminar.addEventListener('click', async () => {
             if (idPremio.value !== '') {
                 const confirmacion = confirm('¿Desea eliminar el premio con Id ' + idPremio.value + '?');
                 if (confirmacion) {
