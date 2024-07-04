@@ -19,6 +19,7 @@ import './app/ventanaABMCliente.js'
 import './app/ventanaCanje.js'
 import './app/ventanaPremios.js'
 import './app/ventanaPublicidad.js'
+import './app/ventanaHistorico.js'
 
 //import './app/clientesCRUD.js'
 
@@ -31,13 +32,13 @@ var idcliente
 var idPremio
 var idPublicidad
 var idPunto
-var barrConsola
+
 
 idcliente = document.getElementById('idcliente');
 idPremio = document.querySelector('#idPremio');
 idPublicidad = document.getElementById('idPublicidad');
 idPunto = document.getElementById('idPunto');
-//barrConsola = document.getElementById('barConsola'); //Variable de barra superior
+
 
 
 window.radioClickedPublicidad = function (radio){
@@ -46,9 +47,10 @@ window.radioClickedPublicidad = function (radio){
 }
 
 window.radioClickedHistorico = function (radio){
-        idPunto.value = radio.value;
-        console.log(idPunto.value);
+    idPunto.value = radio.value;
+    console.log(idPunto.value);
 }
+
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
