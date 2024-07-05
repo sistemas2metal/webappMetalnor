@@ -1,6 +1,6 @@
 import {collection, query, where, getDocs, Timestamp, deleteDoc,doc,addDoc,updateDoc,orderBy, limit } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
-import { db } from './firebase.js'
-
+import { db, storage } from './firebase.js'
+import {ref, uploadBytes,getDownloadURL} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js"
 //---------------- Función para formatear el objeto Timestamp a una cadena de fecha legible
 function formatDate(timestamp) {
     if (timestamp instanceof Timestamp) {
@@ -430,5 +430,20 @@ export async function agregarAuditoria(auditoria) {
         return false;
     }
 }
-
+//---------------------------CARGAR ARCHIVO---------------------------------------------------------------------------------------
+export const cargarArchivo = async ({file})=>{
+    // 1 Referencia al espacio en el bucket donde estarà el archivo
+    console.log(file);
+    const storageRef = ref(storage, '/imagenes/' + file.name);
+    // 2 Subir el archivo
+    try{
+        const image = await uploadBytes(storageRef,file)
+        const url = await getDownloadURL(image.ref)
+        return url;
+    // 3 Retornar la refernecia
+    }catch (error){
+        console.log(error);
+    }
+    
+}
 //--------------------------CONSULTAR AUDITORIA ----------------------------------------------------------------------------------

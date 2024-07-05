@@ -1,4 +1,4 @@
-import {actualizarPublicidad, eliminarPublicidad, agregarPublicidad,getPublicidadId} from './consultas.js'
+import {actualizarPublicidad, eliminarPublicidad, agregarPublicidad,getPublicidadId, cargarArchivo } from './consultas.js'
 import { updateTablaPublicidad} from './updates.js';
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const VPrincipal= document.getElementById('ventanaPrincipal');   //busco el elemento
     const modalElement3 = document.getElementById('abmPublicidad');
     const modalPublicidad = new bootstrap.Modal(modalElement3);
-    //const previewImagen = document.getElementById('previewImagen');
+    const previewImagenPub = document.getElementById('previewImagenPub');
     
     async function cargarDatosPublicidad(id) {
         const publicidad = await getPublicidadId(id);
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             document.getElementById('iPubDescripcion').value = publicidad[0].descripcion;
             document.getElementById('iPubDesde').value = publicidad[0].desde;
             document.getElementById('iPubHasta').value = publicidad[0].hasta;
-            //previewImagen.src = premio[0].imagen;
+            previewImagenPub.src = publicidad[0].imagen;
         }
     }
 
@@ -78,12 +78,15 @@ document.addEventListener('DOMContentLoaded',()=>{
             const inputHasta = document.getElementById('iPubHasta').value;
             const inputImagen = document.getElementById('iPubImagen').files[0];
             
+            const url = await cargarArchivo({file: inputImagen});
+
             const publicidad = {
                 titulo: inputTitulo,
                 descripcion: inputDescripcion,
                 desde: inputDesde,
                 hasta: inputHasta,
-                imagen: './image/' + inputImagen.name
+                imagen: url,
+                nombreimg: inputImagen.name
             };
             
             if (idPublicidad.value !== '') {                           //si seleccione un item entonces Edito
@@ -111,7 +114,8 @@ document.addEventListener('DOMContentLoaded',()=>{
                         descripcion: inputDescripcion,
                         desde: inputDesde,
                         hasta: inputHasta,
-                        imagen: `./image/`+inputImagen.name,
+                        imagen: url,
+                        nombreimg: inputImagen.name
                     };
                     const estado = await agregarPublicidad(publicidadNuevo);
                     if (estado) {
