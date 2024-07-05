@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             } else {
+                alert('Debe seleccionar un premio');
                 console.log('No seleccionó ningún premio');
             }
         });
