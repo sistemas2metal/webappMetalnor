@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"
 import {getDocs, collection} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js"
-import {ref, uploadBytes,getDownloadURL} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js"
+
 //import {getDocs, collection } from "./app/firebase.js"
 //import { getStorage } from "firebase/storage";
 import { auth, db,storage} from './app/firebase.js'
@@ -13,7 +13,6 @@ import './app/logout.js'
 import './app/signinForm.js'
 import './app/googleLogin.js'
 import './app/menuPrincipal.js'
-//import './app/ventanaBuscar.js'
 import './app/ventanabuscar.js'
 import './app/ventanaABMCliente.js'
 import './app/ventanaCanje.js'
