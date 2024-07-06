@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const previewImagenPub = document.getElementById('previewImagenPub');
     
     async function cargarDatosPublicidad(id) {
+        console.log(id);
         const publicidad = await getPublicidadId(id);
         if (publicidad) {
             document.getElementById('iPubTitulo').value = publicidad[0].titulo;

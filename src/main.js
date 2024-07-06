@@ -53,12 +53,20 @@ window.radioClickedHistorico = function (radio){
 
 
 onAuthStateChanged(auth, async (user) => {
+    const btnPrinClientes = document.getElementById('btnPrinClientes');
+    const btnPrinPremios = document.getElementById('btnPrinPremios');
+    const btnPrinPublicidad = document.getElementById('btnPrinPublicidad'); 
     if (user) {
-        //const querySnapshot = await getDocs(collection(db, 'posts'))
-        //setupPosts(querySnapshot.docs)
+        //si se logueo
+        btnPrinClientes.disabled = false;
+        btnPrinPremios.disabled = false;
+        btnPrinPublicidad.disabled = false;
         
     } else {
-        //setupPosts([])
+        //si no se logueo
+        btnPrinClientes.disabled = true;
+        btnPrinPremios.disabled = true;
+        btnPrinPublicidad.disabled = true;
     }
 
     
