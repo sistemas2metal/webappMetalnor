@@ -1,4 +1,5 @@
 import { getPremios, getPremioId, getPuntosUsuarios,canjearPuntos } from './consultas.js'
+import { showMessage } from './showMessage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -15,22 +16,25 @@ document.addEventListener('DOMContentLoaded', () => {
         btnCanje.addEventListener('click', async () => {
             const puntosCanje = document.getElementById('inpCanPuntos'); 
             const puntos = await getPuntosUsuarios(idcliente.value);
-            if  (puntosCanje.value < puntos){
-                console.log(puntosCanje.value < puntos);
-                canjearPuntos(puntosCanje.value,idcliente.value);
-                vCanje.style.display = "none"; //Oculto la ventana 
+            if (puntosCanje.value !== ''){
+                if  (puntosCanje.value < puntos){
+                    //console.log(puntosCanje.value < puntos);
+                    canjearPuntos(puntosCanje.value,idcliente.value);
+                    vCanje.style.display = "none"; //Oculto la ventana 
+                    VBuscar.style.display = "block";
+                    barrConsola.innerHTML = "Módulo Clientes";
+                }else{
+                    showMessage('No alcanzan los puntos!','');
+
+                }
+                vCanje.style.display = "none";
+                //Muestro la ventana Buscar
                 VBuscar.style.display = "block";
                 barrConsola.innerHTML = "Módulo Clientes";
             }else{
-                alert('No alcanzan los puntos!');
+                showMessage('Debe ingresar la descripción del producto a canjear!','alert');
             }
-            vCanje.style.display = "none";
-            //Muestro la ventana Buscar
-            VBuscar.style.display = "block";
-            barrConsola.innerHTML = "Módulo Clientes";
-            //!!!!!!!!!!!!!!!!Actualizar puntos Falta hacer 
             
-            //vCanje.style.display = "none";
         });
     };
 
@@ -65,7 +69,7 @@ window.seleccionar = async function (id){
         });
         modal.hide();
     }catch (error) {
-        console.error("Error al obtener premios:")
+        showMessage("Error al seleccionar premio!",'alert')
     }
 }
 

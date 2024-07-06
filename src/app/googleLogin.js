@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded',function(){
 
             try {
                 const credentials = await signInWithPopup(auth, provider)
-                console.log(credentials)
+                //console.log(credentials)
                 const modal = bootstrap.Modal.getInstance(document.querySelector('#signinModal'))
                 modal.hide()
 
                 showMessage('Bienvenido!!!' + credentials.user.displayName, '')
 
             } catch (error) {
-                console.log(error.code)
+                showMessage(error.code);
             }
         
         })

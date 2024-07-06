@@ -1,4 +1,5 @@
 import {getUsuariosPorNombre,getPuntosUsuarios,getClientesPorId,getPuntosDelUsuarios,eliminarUsuario} from './consultas.js'
+import { showMessage } from './showMessage.js';
 import {updateTable, updateTablaHistoricoP} from './updates.js'
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -42,21 +43,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (confirmacion){
                     const estado = await eliminarUsuario(idcliente.value);
                     if (estado){
-                        console.log('El usuario se eliminó correctamente');
+                        showMessage('El usuario se eliminó correctamente!','');
+                        
                     }else{
-                        console.log('Hubo un error al eliminar el usuario');
+                        showMessage('Hubo un error al eliminar el usuario!','alert');
                     }
                 }
             }else {
-                alert('Debe seleccionar un usuario!');
-                console.log('No seleccionó ningún usuario');
+                //alert('Debe seleccionar un usuario!');
+                showMessage('Debe seleccionar un usuario!', 'alert');
+                //console.log('No seleccionó ningún usuario');
             }  
             
         });
     }
     if (btnAgregar){
         btnAgregar.addEventListener('click',()=>{
-        console.log('Estoy en Agregar');
+        //console.log('Estoy en Agregar');
         // oculto la ventana Buscar
         VBuscar.style.display = "none";
         // borrar los campos de ABMClientes;
@@ -77,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnEditar) {
         btnEditar.addEventListener('click', async() => {
             if (idcliente.value !=='' ){    //Se seleccionó un usuario
-                console.log('Botón Editar presionado');
+                //console.log('Botón Editar presionado');
                 // Busco si se hizo una selección 
                 // Si se hizo oculto la VentanaBuscar
                 VBuscar.style.display = "none";
@@ -95,7 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 ABMClientes.style.display = "block";
                 barrConsola.innerHTML = "Edición de Cliente";
             } else{
-                alert('Debe seleccionar un usuario!');
+                showMessage('Debe seleccionar un usuario!','alert');
+                
             }
         });
     }
@@ -118,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     vCanje.style.display="block";
                     barrConsola.innerHTML = "Canje de Puntos";
                 } else{
-                    alert('Debe seleccionar un usuario!');
+                   showMessage('Debe seleccionar un usuario!','alert');
                 }
             });
         }
@@ -141,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 VHistoricoP.style.display = "block";
                 barrConsola.innerHTML = "Histórico de Puntos";
             } else{
-                alert('Debe seleccionar un usuario!');
+               showMessage('Debe seleccionar un usuario!','alert');
             }
         });
     }

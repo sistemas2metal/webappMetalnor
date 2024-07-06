@@ -1,4 +1,5 @@
 import {eliminarPunto,agregarPuntos, getPuntosDelUsuarios} from './consultas.js';
+import { showMessage } from './showMessage.js';
 import { updateTablaHistoricoP } from './updates.js';
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -21,9 +22,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             if(idPunto.value !==''){
                 const estado = await eliminarPunto(idPunto.value);
                 if (estado){
-                    console.log('los puntos se eliminaron correctamente');
+                    showMessage('Puntos eliminados correctamente','');
                 }else{
-                    console.log('Error al eliminar los puntos');
+                    showMessage('Error al eliminar los puntos','alert');
                 }
             }
         })
@@ -58,12 +59,12 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
             const estado = agregarPuntos(punto);
             if (estado){
-                console.log('los puntos se agregaron correctamente');
+                showMessage('Puntos agregados correctamente','');
                 const puntos = await getPuntosDelUsuarios(idcliente.value);
                 updateTablaHistoricoP(puntos);
                 modalPuntos.hide();
             }else{
-                console.log('Error al agregar los puntos');
+                showMessage('Error al agregar los puntos!','alert');
             }
         })
     }

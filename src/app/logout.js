@@ -17,12 +17,12 @@ logout.addEventListener('click',async ()=>{
     showMessage('Adios!!!','');
     
     VPrincipal.style.display="block";  //llevo a la ventana principal
-    vPremios.style.display="none";  //llevo a la ventana principal
-    vCanje.style.display="none";  //llevo a la ventana principal
-    VBuscar.style.display="none";  //llevo a la ventana principal
-    ABMClientes.style.display="none";  //llevo a la ventana principal
-    VHistoricoP.style.display="none";  //llevo a la ventana principal
-    vPublicidad.style.display="none";  //llevo a la ventana principal
+    vPremios.style.display="none";  // Oculto la ventana Premios
+    vCanje.style.display="none";  //Oculta la ventana Canje
+    VBuscar.style.display="none";  //Oculta la ventana Buscar
+    ABMClientes.style.display="none";  //Oculta la ventana Clientes
+    VHistoricoP.style.display="none";  //Oculta la ventana Historico
+    vPublicidad.style.display="none";  //Oculta la ventana Publicidad
 
     btnPrinClientes.disabled = true;  //desactivo todos los botones
     btnPrinPremios.disabled = true;

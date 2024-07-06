@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded',function (){
     
     if (Aceptar) {
         Aceptar.addEventListener('click', async () => {
-            console.log('idcliente: '+idcliente.value);
+            //console.log('idcliente: '+idcliente.value);
             if (idcliente.value !=='' ){    //Se seleccionó un usuario
-                console.log('Metodo Editar');//Metodo Editar Cliente
+                //console.log('Metodo Editar');//Metodo Editar Cliente
                 //const idCliente = document.getElementById('idcliente').value;
                 const nombre = document.getElementById('crud-nombre').value;
                 const domicilio = document.getElementById('crud-domicilio').value;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded',function (){
                 console.log(clienteActualizado);
                     const estado = await actualizarCliente(idcliente.value, clienteActualizado);
                     if (estado) {
-                        console.log('Cliente actualizado correctamente');
+                        //console.log('Cliente actualizado correctamente');
                         //Oculto la ventana ABMClientes
                         vAbmCliente.style.display='none';
                         //Actualizo la tabla de Buscar
@@ -45,14 +45,17 @@ document.addEventListener('DOMContentLoaded',function (){
                         //Muestro la venta Buscar
                         VBuscar.style.display='block';
                         barrConsola.innerHTML = "Módulo Clientes";
+                        showMessage('Cliente actualizado correctamente!','');
                     } else {
-                        console.log('Hubo un error al actualizar el cliente');
+                        //console.log('Hubo un error al actualizar el cliente');
+                        showMessage('Hubo un error al actualizar el cliente!','alert')
                     }
                 } else {
-                    console.log('Por favor, completa todos los campos');
+                    //console.log('Por favor, completa todos los campos');
+                    showMessage('Por favor, completa todos los campos!','alert')
                 }
             }else{  
-                console.log('Metodo Agregar');    // Metodo Agregar Cliente
+                //console.log('Metodo Agregar');    // Metodo Agregar Cliente
                 const nombre = document.getElementById('crud-nombre').value;
                 const domicilio = document.getElementById('crud-domicilio').value;
                 const dni = document.getElementById('crud-dni').value;
@@ -70,18 +73,20 @@ document.addEventListener('DOMContentLoaded',function (){
                     };                
                     const estado = await agregarCliente(cliente);
                     if (estado) {
-                        console.log('Cliente agregado correctamente');
+                        //console.log('Cliente agregado correctamente');
                         //Oculto la ventana ABMClientes
                         vAbmCliente.style.display='none';
                         //Muestro la venta Buscar
                         VBuscar.style.display='block';
                         barrConsola.innerHTML = "Módulo Clientes";
-                        
+                        showMessage('Cliente agregado correctamente!','');
                     } else {
-                        console.log('Hubo un error al agregar el cliente');
+                        //console.log('Hubo un error al agregar el cliente');
+                        showMessage('Hubo un error al agregar el cliente!','alert')
                     }
                 } else {
-                    console.log('Por favor, completa todos los campos');
+                    //console.log('Por favor, completa todos los campos');
+                    showMessage('Por favor, completa todos los campos!','alert')
                 }
             }
         });
@@ -90,7 +95,7 @@ document.addEventListener('DOMContentLoaded',function (){
     //const barrConsola = document.getElementById('barConsola');    
     if (Cancelar){
         Cancelar.addEventListener("click",()=>{
-            console.log('click en cancelar')
+            //console.log('click en cancelar')
             //Ocultar Ventana abmClientes
             vAbmCliente.style.display="none";
             //Mostrar ventana Buscar

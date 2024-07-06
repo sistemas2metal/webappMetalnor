@@ -1,4 +1,5 @@
 import {actualizarPublicidad, eliminarPublicidad, agregarPublicidad,getPublicidadId, cargarArchivo } from './consultas.js'
+import { showMessage } from './showMessage.js';
 import { updateTablaPublicidad} from './updates.js';
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const previewImagenPub = document.getElementById('previewImagenPub');
     
     async function cargarDatosPublicidad(id) {
-        console.log(id);
+        //console.log(id);
         const publicidad = await getPublicidadId(id);
         if (publicidad) {
             document.getElementById('iPubTitulo').value = publicidad[0].titulo;
@@ -36,21 +37,21 @@ document.addEventListener('DOMContentLoaded',()=>{
                 if (confirmacion) {
                     const estado = await eliminarPublicidad(idPublicidad);
                     if (estado) {
-                        console.log('La publicidad se eliminó correctamente');
+                        showMessage('La publicidad se eliminó correctamente','');
                         updateTablaPublicidad();
                     } else {
-                        console.log('Hubo un error al eliminar la publicidad');
+                        showMessage('Hubo un error al eliminar la publicidad!','alert');
                     }
                 }
             } else {
-                alert('Debe seleccionar una publicidad');
-                console.log('No seleccionó ninguna publicidad');
+                showMessage('Debe seleccionar una publicidad','alert');
+                //console.log('No seleccionó ninguna publicidad');
             }
         });
     }
     if (btnVPubEditar) {
         btnVPubEditar.addEventListener('click', async () => {
-            console.log(idPublicidad.value);
+            //console.log(idPublicidad.value);
             cargarDatosPublicidad(idPublicidad.value);
             modalPublicidad.show();
         });
@@ -63,10 +64,10 @@ document.addEventListener('DOMContentLoaded',()=>{
             document.getElementById('iPubHasta').value='';
             document.getElementById('iPubImagen').value='';
             //previewImagen.src = '';  // Limpia la vista previa de la imagen
-            console.log('mostrar modal');
-            console.log(idPublicidad.value);
+            //console.log('mostrar modal');
+            //console.log(idPublicidad.value);
             idPublicidad.value = '';
-            console.log(idPublicidad.value);
+            //console.log(idPublicidad.value);
             modalPublicidad.show();
         });
     }
@@ -92,24 +93,24 @@ document.addEventListener('DOMContentLoaded',()=>{
             };
             
             if (idPublicidad.value !== '') {                           //si seleccione un item entonces Edito
-                console.log('Metodo Editar Premio');
+                //console.log('Metodo Editar Premio');
                 if (inputTitulo && inputDescripcion && inputDesde && inputHasta) {   //controlo que se hallan cargado los datos
                     const publicidadActualizado = {
                         ...publicidad
                     };
                     const estado = await actualizarPublicidad(idPublicidad.value, publicidadActualizado);
                     if (estado) {
-                        console.log('Publicidad actualizada correctamente');
+                        showMessage('Publicidad actualizada correctamente','');
                         updateTablaPublicidad();
                         modalPublicidad.hide();
                     } else {
-                        console.log('Hubo un error al actualizar la publicidad');
+                        showMessage('Hubo un error al actualizar la publicidad','alert');
                     }
                 } else {
-                    console.log('Por favor, completa todos los campos');
+                    showMessage('Por favor, completa todos los campos!','alert');
                 }
             } else {
-                console.log('Metodo Agregar');
+                //console.log('Metodo Agregar');
                 if (inputTitulo && inputDescripcion && inputDesde && inputHasta && inputImagen) {   //controlo que se hallan cargado los datos
                     const publicidadNuevo = {
                         titulo: inputTitulo,
@@ -121,14 +122,14 @@ document.addEventListener('DOMContentLoaded',()=>{
                     };
                     const estado = await agregarPublicidad(publicidadNuevo);
                     if (estado) {
-                        console.log('Publicidad agregada correctamente');
+                        showMessage('Publicidad agregada correctamente','');
                         updateTablaPublicidad();
                         modalPublicidad.hide();
                     } else {
-                        console.log('Hubo un error al agregar el premio');
+                        showMessage('Hubo un error al agregar el premio','alert');
                     }
                 } else {
-                    console.log('Por favor, completa todos los campos');
+                    showMessage('Por favor, completa todos los campos','alert');
                 }
             }
         });

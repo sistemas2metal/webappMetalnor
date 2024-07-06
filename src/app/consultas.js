@@ -1,6 +1,7 @@
 import {collection, query, where, getDocs, Timestamp, deleteDoc,doc,addDoc,updateDoc,orderBy, limit } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 import { db, storage } from './firebase.js'
 import {ref, uploadBytes,getDownloadURL} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js"
+import { showMessage } from "./showMessage.js";
 //---------------- Función para formatear el objeto Timestamp a una cadena de fecha legible
 function formatDate(timestamp) {
     if (timestamp instanceof Timestamp) {
@@ -66,7 +67,7 @@ export async function getPremioId(id){
         });
         return datosArray;
     } catch (error) {
-        console.error("Error al obtener premio por ID:", error);
+        showMessage("Error al obtener premio por ID:"+error,'alert');
     }
 }
 // -------------Obtiene los puntos de cada usuario CONOCIENDO EL IDCLIENTE -------------------------------------------------------
@@ -89,7 +90,7 @@ export async function getPuntosUsuarios(id){
         });
         return puntos;
     }catch (error){
-        console.error("Error al obtener puntos por ID:", error);
+        showMessage("Error al obtener puntos por ID:"+error,'alert');
         
     }
 }
@@ -108,7 +109,7 @@ export async function getClientesPorId(id){
         });
         return datosArray[0];
     }catch (error) {
-        console.error("Error al obtener Clientes por ID:",error);
+        showMessage("Error al obtener Clientes por ID:"+error,'alert');
     }
 } 
 //----------------------CONSULTA PARA OBTENER LOS PREMIOS ------------------------------------------------------------------------
@@ -122,7 +123,7 @@ export async function getPuntos(){
         }));
         return datosArray;
     }catch (error){
-        console.log("Error al obtener los Puntos");
+        showMessage("Error al obtener los Puntos",'alert');
     }
 }
 //--------------------CONSULTA PARA OBTENER LAS PUBLICIDADES ---------------------------------------------------------------------
@@ -150,7 +151,7 @@ export async function getPublicidad() {
         });
         return publicidadArray;
     } catch (error) {
-        console.log('error!', error);
+        showMessage('error!'+ error,'alert');
     }
 }
 //---------------------OBTENER PUBLICIDAD POR EL ID-------------------------------------------------------------------------------
@@ -167,7 +168,7 @@ export async function getPublicidadId(id){
         });
         return datosArray;
     } catch (error) {
-        console.error("Error al obtener la publicidad por ID:", error);
+        showMessage("Error al obtener la publicidad por ID:"+ error,'alert');
     }
 }
 //--------------------CONSULTA PARA OBTENER LOS PUNTOS DEL USUARIO ---------------------------------------------------------------
@@ -197,7 +198,7 @@ export async function getPuntosDelUsuarios(id){
     });
         return datosArray;
     }catch (error){
-        console.error("Error al obtener puntos por ID:", error);
+        showMessage("Error al obtener puntos por ID:"+ error,'alert');
         
     }
 }
@@ -217,10 +218,10 @@ export async function actualizarCliente(idCliente, clienteActualizado) {
     try {
         const clienteRef = doc(db, 'usuarios', idCliente);
         await updateDoc(clienteRef, clienteActualizado);
-        console.log('Cliente actualizado con ID:', idCliente);
+      showMessage('Cliente actualizado con ID:'+ idCliente,'');
         return true;
     } catch (error) {
-        console.error('Error al actualizar cliente:', error);
+        showMessage('Error al actualizar cliente:'+ error,'alert');
         return false;
     }
 }
@@ -239,10 +240,10 @@ export async function eliminarUsuario(idCliente) { // Función para eliminar un 
 export async function agregarPuntos(puntos) {
     try {
         const docRef = await addDoc(collection(db, 'puntos'), puntos);
-        console.log('puntos agregado con ID:', docRef.id);
+      showMessage('puntos agregado con ID:'+ docRef.id,'alert');
         return true;
     } catch (error) {
-        console.error('Error al agregar puntos:', error);
+        showMessage('Error al agregar puntos:'+ error,'alert');
         return false;
     }
 }
@@ -251,10 +252,10 @@ export async function actualizarPuntos(idPunto, puntoActualizado) {
     try {
         const puntosRef = doc(db, 'puntos', idPunto);
         await updateDoc(puntosRef, puntoActualizado);
-        console.log('Puntos actualizado con ID:', idPunto);
+      showMessage('Puntos actualizado con ID:'+ idPunto,'alert');
         return true;
     } catch (error) {
-        console.error('Error al actualizar Puntos:', error);
+        showMessage('Error al actualizar Puntos:'+ error,'alert');
         return false;
     }
 }
@@ -275,7 +276,7 @@ export async function canjearPuntos(cantidad,idCliente){
         const puntosSnapshot = await getDocs(puntosQuery);
 
         if (puntosSnapshot.empty) {
-            console.log('No hay más puntos disponibles para canjear.');
+            showMessage('No hay más puntos disponibles para canjear.','alert');
             break;
         }
 
@@ -288,21 +289,21 @@ export async function canjearPuntos(cantidad,idCliente){
                 // Restar los puntos de la cantidad y eliminar el registro
                 remainingCantidad -= puntosCantidad;
                 await deleteDoc(doc(db, 'puntos', puntosId));
-                console.log(`Se eliminaron ${puntosCantidad} puntos (ID: ${puntosId}).`);
+                showMessage(`Se eliminaron ${puntosCantidad} puntos`,'alert');
             } else {
                 // Restar los puntos de la cantidad y actualizar el registro
                 const nuevosPuntosCantidad = puntosCantidad - remainingCantidad;
                 await updateDoc(doc(db, 'puntos', puntosId), {
-                    cantidad: nuevosPuntosCantidad
+                cantidad: nuevosPuntosCantidad
                 });
-                console.log(`Se actualizaron los puntos (ID: ${puntosId}) a ${nuevosPuntosCantidad} puntos.`);
+                showMessage(`Se actualizaron los puntos (ID: ${puntosId}) a ${nuevosPuntosCantidad} puntos.`,'alert');
                 remainingCantidad = 0;
             }
         }
     }
 
     if (remainingCantidad > 0) {
-        console.log(`No se pudieron canjear ${remainingCantidad} puntos porque no hay suficientes puntos disponibles.`);
+        showMessage(`No se pudieron canjear ${remainingCantidad} puntos porque no hay suficientes puntos disponibles.`,'alert');
     }
 
 }
@@ -310,10 +311,10 @@ export async function canjearPuntos(cantidad,idCliente){
 export async function eliminarPunto(idPunto) { // Función para eliminar un usuario por su idcliente
     try {
         await deleteDoc(doc(db, 'puntos', idPunto));
-        console.log('Puntos eliminado correctamente');
+        showMessage('Puntos eliminados correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al eliminar Puntos:', error);
+        showMessage('Error al eliminar Puntos:'+ error,'alert');
         return false;
     }
 }
@@ -321,10 +322,10 @@ export async function eliminarPunto(idPunto) { // Función para eliminar un usua
 export async function agregarPublicidad(publicidad) {
     try {
         const docRef = await addDoc(collection(db, 'posts'), publicidad);
-        console.log('publicidad agregado con ID:', docRef.id);
+        showMessage('publicidad agregado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al agregar publicidad:', error);
+        showMessage('Error al agregar publicidad:'+ error,'alert');
         return false;
     }
 }
@@ -333,10 +334,10 @@ export async function actualizarPublicidad(idPublicidad, publicidadActualizado) 
     try {
         const publicidadRef = doc(db, 'posts', idPublicidad);
         await updateDoc(publicidadRef, publicidadActualizado);
-        console.log('Publicidad actualizado con ID:', idPublicidad);
+        showMessage('Publicidad actualizado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al actualizar Publicidad:', error);
+        showMessage('Error al actualizar Publicidad:'+ error,'');
         return false;
     }
 }
@@ -355,10 +356,10 @@ export async function eliminarPublicidad(idPublicidad) {
 export async function agregarPremios(premios) {
     try {
         const docRef = await addDoc(collection(db, 'premios'), premios);
-        console.log('premios agregado con ID:', docRef.id);
+        showMessage('premios agregado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al agregar premios:', error);
+        showMessage('Error al agregar premios:'+ error,'alert');
         return false;
     }
 }
@@ -367,10 +368,10 @@ export async function actualizarPremios(idPremio, premioActualizado) {
     try {
         const premiosRef = doc(db, 'premios', idPremio);
         await updateDoc(premiosRef, premioActualizado);
-        console.log('Premio actualizado con ID:', idPremio);
+        showMessage('Premio actualizado correctamente', '');
         return true;
     } catch (error) {
-        console.error('Error al actualizar Premio:', error);
+        showMessage('Error al actualizar Premio:'+ error,'');
         return false;
     }
 }
@@ -378,10 +379,10 @@ export async function actualizarPremios(idPremio, premioActualizado) {
 export async function eliminarPremio(idPremio) {
     try {
         await deleteDoc(doc(db, 'premios', idPremio));
-        console.log('Premio eliminado correctamente');
+        showMessage('Premio eliminado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al eliminar premio:', error);
+        showMessage('Error al eliminar premio:'+ error,'alert');
         return false;
     }
 }
@@ -389,10 +390,10 @@ export async function eliminarPremio(idPremio) {
 export async function agregarPromocion(promocion) {
     try {
         const docRef = await addDoc(collection(db, 'Promociones'), promocion);
-        console.log('promocion agregado con ID:', docRef.id);
+        showMessage('promocion agregado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al agregar promocion:', error);
+        showMessage('Error al agregar promocion:'+ error,'alert');
         return false;
     }
 }
@@ -401,10 +402,10 @@ export async function actualizarPromocion(idPromocion, promocionesActualizado) {
     try {
         const promocionRef = doc(db, 'Promociones', idPromocion);
         await updateDoc(promocionRef, promocionesActualizado);
-        console.log('Promocion actualizado con ID:', idPromocion);
+        showMessage('Promocion actualizado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al actualizar Promocion:', error);
+        showMessage('Error al actualizar Promocion:'+ error,'alert');
         return false;
     }
 }
@@ -412,10 +413,10 @@ export async function actualizarPromocion(idPromocion, promocionesActualizado) {
 export async function eliminarPromocion(idPromocion) {
     try {
         await deleteDoc(doc(db, 'Promociones', idPromocion));
-        console.log('Promocion eliminado correctamente');
+        showMessage('Promocion eliminado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al eliminar Promocion:', error);
+        showMessage('Error al eliminar Promocion:'+ error,'alert');
         return false;
     }
 }
@@ -423,17 +424,17 @@ export async function eliminarPromocion(idPromocion) {
 export async function agregarAuditoria(auditoria) {
     try {
         const docRef = await addDoc(collection(db, 'auditoria'), auditoria);
-        console.log('auditoria agregado con ID:', docRef.id);
+        showMessage('auditoria agregado correctamente','');
         return true;
     } catch (error) {
-        console.error('Error al agregar auditoria:', error);
+        showMessage('Error al agregar auditoria:'+ error,'alert');
         return false;
     }
 }
 //---------------------------CARGAR ARCHIVO---------------------------------------------------------------------------------------
 export const cargarArchivo = async ({file})=>{
     // 1 Referencia al espacio en el bucket donde estarà el archivo
-    console.log(file);
+    //console.log(file);
     const storageRef = ref(storage, '/imagenes/' + file.name);
     // 2 Subir el archivo
     try{
@@ -442,7 +443,7 @@ export const cargarArchivo = async ({file})=>{
         return url;
     // 3 Retornar la refernecia
     }catch (error){
-        console.log(error);
+        showMessage(error,'alert');
     }
     
 }

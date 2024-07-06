@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
             barrConsola.innerHTML = "Módulo Clientes";
         });
     } else {
-        console.log('El botón btnPrinClientes no se encontró');
+        //console.log('El botón btnPrinClientes no se encontró');
+        showMessage('El botón de Clientes no se encontro!','alert');
     }
 
     if (btnPrinPremios) {
@@ -41,12 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
             barrConsola.innerHTML = "Módulo Premios";
         });
     } else {
-        console.log('El botón btnPrinPremios no se encontró');
+        //console.log('El botón btnPrinPremios no se encontró');
+        showMessage('El botón de Premios no se encontro!','alert')
     }
     
     if (btnPrinPublicidad) {
         btnPrinPublicidad.addEventListener('click', async () => {
-            console.log('Botón Publicidad presionado');
+             //console.log('Botón Publicidad presionado');
             // Ocultar el Menú Principal
             VPrincipal.style.display="none";
             //Buscar la publicidades
@@ -58,16 +60,18 @@ document.addEventListener("DOMContentLoaded", () => {
             barrConsola.innerHTML = "Módulo Publicidad";
         });
     } else {
-        console.log('El botón btnPrinPublicidad no se encontró');
+        //console.log('El botón btnPrinPublicidad no se encontró');
+        showMessage('El botón de Publicidad no se encontro!','alert')
     }
 
     if (btnPrinMetricas) {
         btnPrinMetricas.addEventListener('click', () => {
-            console.log('Botón Metricas presionado');
+            //console.log('Botón Metricas presionado');
             //Aqui agregar el código para la funcionalidad de los botones
         });
     } else {
         console.log('El botón btnPrinMetricas no se encontró');
+        showMessage('El botón de Metricas no se encontro!','alert')
     }
 
     if (btnInicio){

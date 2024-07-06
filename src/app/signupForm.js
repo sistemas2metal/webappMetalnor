@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const email = signupForm['signup-email'].value
             const password = signupForm['signup-password'].value
-            console.log(email, password)
+            //console.log(email, password)
             try {
                 const userCredentials = await createUserWithEmailAndPassword(auth, email, password)
-                console.log(userCredentials)
+                //console.log(userCredentials)
                 // cierra el modal de signupModal
                 const signupModal = document.querySelector('#signupModal')
                 const modal = bootstrap.Modal.getInstance(signupModal)

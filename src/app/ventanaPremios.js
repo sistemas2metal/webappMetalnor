@@ -1,4 +1,5 @@
 import { eliminarPremio, actualizarPremios, agregarPremios, getPremioId, cargarArchivo } from './consultas.js';
+import { showMessage } from './showMessage.js';
 import { updateTablaPremios } from './updates.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.radioClickedPremios = function (radio) {
         idPremio.value = radio.value;
-        console.log(idPremio.value);
+        //console.log(idPremio.value);
     }
 
     if (btnVPremioAgregar) {
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('inputStock').value = '';
             document.getElementById('inputImagen').value = '';
             previewImagen.src = '';  // Limpia la vista previa de la imagen
-            console.log('mostrar modal');
+            //console.log('mostrar modal');
             idPremio.value = '';
             modalPremios.show();
         });
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cargarDatosPremio(idPremio.value);
                 modalPremios.show();
             } else {
-                alert('Debe seleccionar un premio!');
+                showMessage('Debe seleccionar un premio!','alert');
             }
         });
     }
@@ -61,15 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (confirmacion) {
                     const estado = await eliminarPremio(idPremio.value);
                     if (estado) {
-                        console.log('El premio se eliminó correctamente');
+                        showMessage('El premio se eliminó correctamente','');
                         updateTablaPremios();
                     } else {
-                        console.log('Hubo un error al eliminar el premio');
+                        showMessage('Hubo un error al eliminar el premio!','');
                     }
                 }
             } else {
-                alert('Debe seleccionar un premio');
-                console.log('No seleccionó ningún premio');
+                showMessage('Debe seleccionar un premio!','alert');
+                //console.log('No seleccionó ningún premio');
             }
         });
     }
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             
             if (idPremio.value !== '') {                           //si seleccione un item entonces Edito
-                console.log('Metodo Editar Premio');
+                //console.log('Metodo Editar Premio');
                 if (inputTitulo && inputDetalle && inputPuntos && inputStock) {   //controlo que se hallan cargado los datos
                     
                     const premioActualizado = {
@@ -109,13 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         updateTablaPremios();
                         modalPremios.hide();
                     } else {
-                        console.log('Hubo un error al actualizar el cliente');
+                        showMessage('Hubo un error al actualizar el cliente','alert');
                     }
                 } else {
-                    console.log('Por favor, completa todos los campos');
+                    showMessage('Por favor, completa todos los campos!','alert');
                 }
             } else {
-                console.log('Metodo Agregar');
+                //console.log('Metodo Agregar');
                 if (inputTitulo && inputDetalle && inputPuntos && inputStock && inputImagen) {
                     const premioNuevo = {
                         descripcion: inputDetalle,
@@ -127,14 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     };
                     const estado = await agregarPremios(premioNuevo);
                     if (estado) {
-                        console.log('Premio agregado correctamente');
+                        showMessage('Premio agregado correctamente','');
                         updateTablaPremios();
                         modalPremios.hide();
                     } else {
-                        console.log('Hubo un error al agregar el premio');
+                        showMessage('Hubo un error al agregar el premio!','alert');
                     }
                 } else {
-                    console.log('Por favor, completa todos los campos');
+                    showMessage('Por favor, completa todos los campos!','alert');
                 }
             }
         });
